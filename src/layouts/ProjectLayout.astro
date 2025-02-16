@@ -1,0 +1,104 @@
+---
+import HeadData from '../components/HeadData.astro';
+import Header from '../components/Header.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { Picture } from 'astro:assets';
+import { marked } from 'marked';
+import contactInfo from '../data/contactInfo';
+
+const { frontmatter } = Astro.props;
+---
+<HeadData title={frontmatter.slug} />
+<body>
+  <Header />
+  <Nav />
+  <div class="project">
+    <div class="project__blurry-shape-wrapper">
+      <div class="project__blurry-shape"></div>
+    </div>
+    <a class="project__back-btn" href="/">
+      <div class="project__back-btn-icon"></div>
+      <div class="project__back-btn-text">Projects</div>
+    </a>
+    <section class="project__top-section">
+      <div class="project__cover-wrapper" style="overflow: hidden;">
+        <Picture
+          src={import(`..${frontmatter.thumbnail}_5000.webp`)}
+          alt={frontmatter.slug}
+          width={5000}
+          height={2100}
+          formats={['avif', 'webp']}
+          widths={[1500, 1000, 480]}
+        />
+      </div>
+      <div class="project__intro-section">
+        <h2 class="project__title">{frontmatter.project_title}</h2>
+        <div class="project__metadata">
+          <p class="project__metadata-text">{frontmatter.tags.map((tag) => tag.replaceAll('-', ' ')).sort().join(' — ')}</p>
+          <p class="project__metadata-text">{new Date(frontmatter.date).toLocaleDateString('es').replaceAll('/', '-')}</p>
+          {frontmatter.client && (
+            <p class="project__metadata-text">{frontmatter.client}</p>
+          )}
+        </div>
+        <div class="project__introduction-text" set:html={marked.parse(frontmatter.introduction)}></div>
+      </div>
+    </section>
+    <section class="project__content-section">
+      {frontmatter.phases.map((phase) => (
+        <div class="project__phase" data-phase-title={phase.title + ' phase' }>
+          {phase.sections.map((section) => (
+            <div class="project__phase-section">
+              {section.text && (
+                <div class="project__phase-section-text" set:html={marked.parse(section.text)}></div>
+              )}
+              <div class="project__phase-section-assets">
+                {section?.assets?.map((asset) => (
+                  <Fragment>
+                    {asset.type === 'image' && (
+                      <Fragment>
+                        {/* TODO */}
+                        {/* {% include components/image.html %} */}
+                      </Fragment>
+                    )}
+                    {asset.type === 'video' && (
+                      <video class={asset.class} muted autoplay loop playsinline>
+                        <source src={asset.main_url} type="video/mp4">
+                      </video>
+                    )}
+                  </Fragment>
+                ))}
+              </div>
+            </div>
+          ))}
+          <span class="project__sticky-element-hidder"></span>
+        </div>
+      ))}
+    </section>
+    <section class="project__notes-section">
+      <slot />
+    </section>
+    <section class="project__used-tools">
+      {frontmatter.used_tools && (
+        <Fragment>
+          <h3 class="project__used-tools-title">Tools I used</h3>
+          {frontmatter.used_tools.map((tool) => (
+            <img
+              src={`/icons/icons--software-${tool.replaceAll(' ', '').toLowerCase()}.png`}
+              alt={tool.toUpperCase()}>
+          ))}
+        </Fragment>
+      )}
+    </section>
+    <section class="project__approaching">
+      <a class="project__approaching-text-link" href={`mailto:${contactInfo.email}`}>Get in touch</a>
+      <button class="project__approaching-btn btn-special"><a href={`mailto:${contactInfo.email}`}>Get in touch</a></button>
+    </section>
+  </div>
+  </section>
+  <Footer />
+  <div class="dialog__landscape-mode">Please,<br />rotate your device</div>
+</body>
+<!-- Designed and built with passion by Adrian M. Bandera (Adrismate) -->
+
+</html>

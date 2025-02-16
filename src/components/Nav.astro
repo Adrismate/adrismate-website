@@ -1,0 +1,73 @@
+---
+import contactInfo from '../data/contactInfo';
+import AboutMe from './AboutMe.astro';
+import Contact from './Contact.astro';
+---
+
+<!-- MOBILE MENU -->
+<nav class="nav-mobile" data-menu-status="closed">
+    <ul class="nav-mobile__links-group">
+        <li><a class="nav-mobile__link" id="projects_section_btn">Projects</a></li>
+        <li><a class="nav-mobile__link" data-page-link="contact">Contact</a></li>
+        <li><a class="nav-mobile__link" data-page-link="about_me">About me</a></li>
+    </ul>
+    <!-- <div class="night-mode-toggle night-mode-toggle--day"></div> -->
+    <div class="nav-mobile__social-media-group social-media">
+        <a href={contactInfo.linkedin} target="_blank" rel="noopener noreferrer">
+            <img
+                src="/icons/icons--linkedin.svg"
+                class="social-media__icon social-media__icon--behance"
+                alt="LinkedIn"
+            ></img>
+        </a>
+        <a href={contactInfo.behance} target="_blank" rel="noopener noreferrer">
+            <img
+                src="/icons/icons--behance.svg"
+                class="social-media__icon social-media__icon--behance"
+                alt="behance"
+            ></img>
+        </a>
+        <a href={contactInfo.dribble} target="_blank" rel="noopener noreferrer">
+            <img
+                src="/icons/icons--dribbble.svg"
+                class="social-media__icon social-media__icon--dribbble"
+                alt="dribbble"
+            ></img>
+        </a>
+        <a href={contactInfo.instagram} target="_blank" rel="noopener noreferrer">
+            <img
+                src="/icons/icons--instagram.svg"
+                class="social-media__icon social-media__icon--instagram"
+                alt="instagram"
+            ></img>
+        </a>
+    </div>
+</nav>
+
+<!-- DESKTOP MENU -->
+<nav class="nav-desktop">
+    <ul>
+        <li class="nav-desktop__link nav-desktop__link--contact" data-page-link="contact">
+            <div class="nav-desktop__arrow nav-desktop__arrow--left">
+                <span></span>
+                <span></span>
+            </div>
+            <p class="nav-desktop__text">Contact</p>
+        </li>
+        <li class="nav-desktop__link nav-desktop__link--about-me" data-page-link="about_me">
+            <div class="nav-desktop__arrow nav-desktop__arrow--right">
+                <span></span>
+                <span></span>
+            </div>
+            <p class="nav-desktop__text">About me</p>
+        </li>
+    </ul>
+</nav>
+
+<!-- Contact pages -->
+<div class="contact" data-page-status="closed" id="contact_page">
+    <Contact />
+</div>
+<div class="about-me" data-page-status="closed" id="about_me_page">
+    <AboutMe />
+</div>

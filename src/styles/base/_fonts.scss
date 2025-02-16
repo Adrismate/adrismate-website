@@ -1,0 +1,238 @@
+@font-face {
+	font-family: 'Manrope';
+	src: url(/fonts/manrope/Manrope-ExtraLight.ttf);
+	font-weight: 200;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Manrope';
+	src: url(/fonts/manrope/Manrope-Regular.ttf);
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Manrope';
+	src: url(/fonts/manrope/Manrope-SemiBold.ttf);
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Manrope';
+	src: url(/fonts/manrope/Manrope-Bold.ttf);
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Cormorant';
+	src: url(/fonts/cormorant/Cormorant-Regular.ttf);
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Cormorant';
+	src: url(/fonts/cormorant/Cormorant-Regular.ttf);
+	font-weight: 600;
+	font-style: normal;
+}
+
+
+@mixin manrope-font {
+	font-family: 'Manrope';
+	font-style: normal;
+	text-decoration: none;
+	font-weight: 400;
+}
+@mixin cormorant-font {
+	font-family: 'Cormorant';
+	font-style: normal;
+	text-decoration: none;
+	font-weight: 500;
+}
+
+@mixin display-style {
+	font-size: clamp(14px, 9vw, 134px);
+	line-height: 92%;
+	text-transform: uppercase;
+}
+@mixin h1-style($platform) {
+	@include cormorant-font;
+	text-transform: uppercase;
+	@if $platform == desktop {
+		font-size: 142px;
+		line-height: 83%;
+		letter-spacing: -4px;
+	} @else if $platform == mobile {
+		font-size: 58px;
+		line-height: 83%;
+		letter-spacing: -4px;
+	}
+}
+@mixin h2-style($platform, $bold: no) {
+	@include manrope-font;
+	text-transform: none;
+	@if $platform == desktop {
+		font-size: 64px;
+		line-height: 122%;
+		letter-spacing: -1.5px;
+	} @else if $platform == mobile {
+		font-size: 38px;
+		line-height: 132%;
+		letter-spacing: -1.5px;
+	}
+	@if $bold == yes {
+		font-weight: 600;
+	} @else if $bold == no {
+		font-weight: 400;
+	}
+}
+@mixin h3-style($platform, $bold: no) {
+	@include manrope-font;
+	text-transform: none;
+	@if $platform == desktop {
+		font-size: 42px;
+		line-height: 128%;
+		letter-spacing: -1.5px;
+	} @else if $platform == mobile {
+		font-size: 34px;
+		line-height: 128%;
+		letter-spacing: -1.5px;
+	}
+	@if $bold == yes {
+		font-weight: 600;
+	} @else if $bold == no {
+		font-weight: 400;
+	}
+}
+@mixin h4-style($platform, $bold: no) {
+	@include manrope-font;
+	text-transform: none;
+	@if $platform == desktop {
+		font-size: 26px;
+		line-height: 132%;
+	} @else if $platform == mobile {
+		font-size: 22px;
+		line-height: 132%;
+	}
+	@if $bold == yes {
+		font-weight: 600;
+	} @else if $bold == no {
+		font-weight: 400;
+	}
+}
+@mixin body-style($platform, $size: regular, $bold: no) {
+	@include manrope-font;
+	text-transform: none;
+	@if $platform == desktop {
+		@if $size == regular {
+			font-size: 18px;
+			line-height: 164%;
+		}
+		@if $size == little {
+			font-size: 16px;
+			line-height: 172%;
+			letter-spacing: 0.6px;
+		}
+	} @else if $platform == mobile {
+		@if $size == regular {
+			font-size: 16px;
+			line-height: 160%;
+		}
+		@if $size == little {
+			font-size: 14px;
+			line-height: 180%;
+			letter-spacing: 0.6px;
+		}
+	}
+	@if $bold == yes {
+		font-weight: 700;
+	} @else if $bold == no {
+		font-weight: 400;
+	}
+}
+@mixin button-text-style($style: regular) {
+	@include manrope-font;
+	text-transform: uppercase;
+	white-space: nowrap;
+	@if $style == regular {
+		font-size: 20px;
+		line-height: 28px;
+		letter-spacing: 1px;
+	} @else if $style == wide {
+		font-size: 20px;
+		line-height: 28px;
+		letter-spacing: 3px;
+	}
+}
+@mixin label-style($platform, $bold: no) {
+	@include manrope-font;
+	text-transform: uppercase;
+	@if $platform == desktop {
+		font-size: 22px;
+		line-height: 28px;
+		letter-spacing: 1.5px;
+	} @else if $platform == mobile {
+		font-size: 17px;
+		line-height: 28px;
+		letter-spacing: 1px;
+	}
+	@if $bold == yes {
+		font-weight: 600;
+	} @else if $bold == no {
+		font-weight: 400;
+	}
+}
+@mixin caption-style($platform, $bold: no) {
+	@include manrope-font;
+	text-transform: uppercase;
+	@if $platform == desktop {
+		font-size: 14px;
+		line-height: 140%;
+		letter-spacing: 0.5px;
+	} @else if $platform == mobile {
+		font-size: 12px;
+		line-height: 160%;
+		letter-spacing: 1px;
+	}
+	@if $bold == yes {
+		font-weight: 700;
+	} @else if $bold == no {
+		font-weight: 400;
+	}
+}
+
+// ----------------------------------------
+
+// h1 {
+//   @include h1-style(desktop);
+// }
+// h2 {
+//   @include h2-style(desktop);
+// }
+// h3 {
+//   @include h3-style(desktop);
+// }
+// h4 {
+//   @include h4-style(desktop);
+// }
+// p {
+//   @include body-style(desktop);
+// }
+
+// // Add an @media query for auto change the text properties to mobile specifications.
+// @include breakpoint(mobile) {
+//   h1 {
+//     @include h1-style(mobile);
+//   }
+//   h2 {
+//     @include h2-style(mobile);
+//   }
+//   h3 {
+//     @include h3-style(mobile);
+//   }
+//   h4 {
+//     @include h4-style(mobile);
+//   }
+//   p {
+//     @include body-style(mobile);
+//   }
+// }

@@ -1,0 +1,547 @@
+$cover-height: 40vh;
+$left-column-width: 40%;
+
+@mixin project-column-left-content-wrapper {
+  width: $left-column-width;
+  padding: 0 42px 0;
+  flex: none;
+
+  @include breakpoint(tablet) {
+    width: 100%;
+    max-width: 772px;
+    margin: 0 auto;
+    padding: 64px 42px 0;
+  }
+
+  @include breakpoint(mobile) {
+    width: 100%;
+    padding: 56px 32px 0;
+  }
+}
+
+.project {
+  // & > * {
+  // 	border: 1px solid red;
+  // }
+  max-width: 2560px;
+  margin: 0 auto;
+  padding: 0 70px;
+
+  @include breakpoint(tablet) {
+    padding: 0;
+  }
+
+  &__back-btn {
+    padding: 7px;
+    border-radius: 16px;
+
+    position: fixed;
+    left: 112px;
+    top: 82px;
+    z-index: 4;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(242, 234, 234, 0.5);
+    backdrop-filter: blur(36px);
+
+    & > * {
+      mix-blend-mode: difference;
+    }
+
+    &-icon {
+      width: 34px;
+      height: 34px;
+      filter: brightness(0.2);
+      background: url(/icons/icons--little-arrow.svg) center no-repeat;
+    }
+
+    &-text {
+      @include button-text-style;
+      width: 0;
+
+      opacity: 0;
+
+      transform: translateX(-50px);
+      transition: all 1s cubic-bezier(0, 0.5, 0.05, 1);
+
+      @include breakpoint(tablet) {
+        @include button-text-style;
+      }
+    }
+
+    &:hover {
+      gap: 7px;
+
+      & > * {
+        mix-blend-mode: normal;
+      }
+
+      .project__back-btn-text {
+        width: 124px;
+        opacity: 1;
+        transform: initial;
+      }
+    }
+
+    @include breakpoint(tablet) {
+      display: none;
+    }
+  }
+
+  &__top-section {
+    width: 100%;
+    min-height: 95vh;
+    position: relative;
+
+    display: flex;
+    flex-direction: row-reverse;
+    gap: $spacer-s;
+
+    @include breakpoint(tablet) {
+      display: block;
+    }
+  }
+
+  &__intro-section {
+    width: $left-column-width;
+    padding: 169px 42px 0;
+    flex: none;
+
+    @include breakpoint(tablet) {
+      width: 100%;
+      max-width: 772px;
+
+      margin: 0 auto;
+      padding: 64px 42px 0;
+    }
+
+    @include breakpoint(mobile) {
+      width: 100%;
+      padding: 56px 32px 0;
+    }
+  }
+
+  &__cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+
+    // Maintain the space for the cover image even before it loads
+    background-color: var(--color__neutrals-gallery--200);
+    min-height: $cover-height;
+
+    // Maintain aspect ratio
+    aspect-ratio: 16 / 9;
+
+    animation: project__cover-animation 2s ease-out forwards;
+
+    @include breakpoint(tablet) {
+      width: 100%;
+      min-height: $cover-height;
+    }
+
+    @keyframes project__cover-animation {
+      from {
+        transform: scale(1.25) translateY(-15px);
+        transform-origin: top;
+      }
+      to {
+        transform: scale(1) translateY(0);
+        transform-origin: 50% 16%;
+      }
+    }
+  }
+
+  &__title {
+    @include h3-style(desktop);
+
+    @include breakpoint(tablet) {
+      @include h3-style(mobile);
+    }
+  }
+
+  &__introduction-text {
+    & > p strong {
+      @include body-style(desktop, little, yes);
+      max-width: 570px;
+
+      @include breakpoint(tablet) {
+        @include body-style(mobile, little, yes);
+        max-width: initial;
+        margin-top: 64px;
+        margin-bottom: 32px;
+      }
+    }
+  }
+
+  &__blurry-shape-wrapper {
+    width: 100%;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    z-index: -1;
+    overflow-x: hidden;
+  }
+
+  &__blurry-shape {
+    width: 100%;
+    max-width: 1445px;
+    min-width: 550px;
+    aspect-ratio: 1 / 1;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+
+    border-radius: 100%;
+
+    background: var(--color__primary-vanilla-ice--500);
+    filter: blur(100px);
+
+    @include breakpoint(tablet) {
+      top: calc(#{$cover-height} - 30vh);
+
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &__metadata {
+    margin: 23px 0px 64px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 7px;
+
+    @include breakpoint(mobile) {
+    }
+  }
+
+  &__metadata-text {
+    @include caption-style(desktop);
+    color: var(--color__neutrals-midnight--300);
+
+    @include breakpoint(tablet) {
+      @include caption-style(mobile);
+
+      // &:first-of-type {
+      //   flex: 1 1 100%;
+      // }
+    }
+  }
+
+  &__content-section {
+    margin-top: $spacer-s;
+
+    @include breakpoint(tablet) {
+      margin-top: 32px;
+    }
+    img,
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  &__phase {
+    position: relative;
+
+    &:after {
+      content: attr(data-phase-title);
+
+      @include label-style(desktop);
+      width: $left-column-width;
+
+      position: sticky;
+      bottom: 0;
+      z-index: 0;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: $spacer-l;
+
+      background: var(--color__neutrals-gallery--200);
+
+      @include breakpoint(tablet) {
+        @include label-style(mobile);
+        width: 100%;
+        border-top: 1px solid var(--color__neutrals-midnight--500);
+
+        padding: $spacer-s;
+      }
+      @include breakpoint(mobile) {
+        margin-bottom: $spacer-xxl;
+      }
+    }
+  }
+
+  &__phase-section {
+    margin-bottom: $spacer-s;
+
+    display: flex;
+    flex-direction: row;
+    gap: $spacer-s;
+    p {
+      margin-bottom: $spacer-s;
+    }
+    &:last-of-type {
+      margin-bottom: 0px;
+    }
+
+    @include breakpoint(tablet) {
+      padding: initial;
+      display: block;
+    }
+    @include breakpoint(mobile) {
+      // margin-bottom: 64px;
+    }
+  }
+
+  &__sticky-element-hidder {
+    width: 100%;
+    height: 100px;
+
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+
+    background: linear-gradient(180deg, rgba(249, 249, 249, 0) 0%, #f9f9f9 40%);
+
+    @include breakpoint(tablet) {
+      display: none;
+    }
+  }
+
+  &__phase-section-text {
+    @include project-column-left-content-wrapper;
+    padding-top: 0;
+
+    & > p {
+      @include body-style(desktop);
+      max-width: 570px;
+      @include breakpoint(tablet) {
+        max-width: initial;
+      }
+    }
+
+    @include breakpoint(tablet) {
+      @include body-style(mobile);
+      margin-top: initial;
+      margin-bottom: 32px;
+    }
+  }
+
+  &__phase-section-assets {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-flow: row wrap;
+    gap: $spacer-s;
+  }
+
+  &__asset-small {
+    width: calc(50% - (#{$spacer-s} / 2));
+    height: 50vh;
+    flex-grow: 1;
+
+    @include breakpoint(tablet) {
+      width: 100%;
+      height: 50vh;
+    }
+  }
+
+  &__asset-regular {
+    width: 100%;
+    height: 70vh;
+
+    @include breakpoint(tablet) {
+      height: 60vh;
+    }
+  }
+
+  &__asset-large {
+    width: 100%;
+    height: auto;
+    z-index: 1;
+
+    object-position: center;
+
+    margin: $spacer-m 0;
+
+    @include breakpoint(tablet) {
+      height: 90vh;
+    }
+  }
+
+  &__asset-small,
+  &__asset-regular,
+  &__asset-large {
+    @include breakpoint(mobile) {
+      object-fit: fill;
+      height: auto;
+      height: initial;
+      z-index: initial;
+      margin: initial;
+    }
+  }
+
+  &__notes-section {
+    @include project-column-left-content-wrapper;
+
+    p {
+      margin-bottom: $spacer-s;
+    }
+
+    & > * {
+      @include body-style(desktop);
+      max-width: 570px;
+
+      @include breakpoint(tablet) {
+        @include body-style(mobile);
+        max-width: initial;
+        margin-bottom: 32px;
+      }
+    }
+  }
+
+  button.btn-secundary,
+  .btn-primary {
+    width: 100%;
+    margin: 24px 0;
+  }
+
+  &__used-tools {
+    @include project-column-left-content-wrapper;
+    margin-top: $spacer-m;
+
+    @include breakpoint(tablet) {
+      margin-top: $spacer-s;
+    }
+
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    column-gap: $spacer-s;
+
+    &-title {
+      @include label-style(desktop, yes);
+
+      display: block;
+      width: 100%;
+      text-align: left;
+      flex: 1 0 auto;
+      margin: 16px 0 16px;
+
+      @include breakpoint(tablet) {
+        @include label-style(mobile, yes);
+      }
+    }
+
+    img {
+      width: 72px;
+      aspect-ratio: 1 / 1;
+
+      @include breakpoint(tablet) {
+        width: 64px;
+      }
+    }
+  }
+
+  &__approaching {
+    width: 100%;
+    height: 80vh;
+
+    opacity: 0;
+    position: relative;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: radial-gradient(41.06% 27.33% at 49.98% 65.3%, rgba(255, 174, 27, 0.23) 0%, rgba(255, 174, 27, 0) 100%),
+      radial-gradient(51.63% 48.52% at 49.98% 50.03%, #f2dbdf 28.65%, rgba(242, 219, 223, 0) 100%);
+
+    transform: scale(0.9);
+    transition: all 1s ease-out;
+
+    @include breakpoint(tablet) {
+      height: 60vh;
+      background: initial;
+    }
+
+    &--reveal {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  &__approaching-text-link {
+    @include h1-style(desktop);
+    width: fit-content;
+
+    position: relative;
+    margin: 0 auto;
+
+    text-align: center;
+    font-size: clamp(14px, 7.75vw, 142px);
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 0;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      background: var(--color__neutrals-midnight--500);
+      transition: width 250ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    &:hover {
+      &::before {
+        width: 100%;
+      }
+    }
+    @include breakpoint(tablet) {
+      display: none;
+    }
+  }
+
+  &__approaching-shape {
+    border-radius: 100%;
+
+    position: absolute;
+    left: 50%;
+
+    filter: blur(85px);
+
+    @include breakpoint(tablet) {
+      display: none;
+    }
+  }
+
+  &__approaching-btn.btn-special {
+    display: none;
+    margin: 0 32px;
+
+    @include breakpoint(tablet) {
+      display: block;
+    }
+  }
+}

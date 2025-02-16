@@ -1,0 +1,75 @@
+---
+import contactInfo from '../data/contactInfo';
+
+const matches = import.meta.glob('../data/about.md', { eager: true });
+const about = Object.values(matches)[0];
+---
+
+<h2 class="about-me__title">Hi, it’s <br> adrismate!</h2>
+<h4 class="about-me__subtitle">{about.frontmatter.introduction[0]}</h4>
+<!-- TODO -->
+<!-- {% include components/image.html class='about-me__profile-picture' alt='adrismate portrait picture' main_url="/assets/images/adrismate-portrait-picture" media_sizes='500px, 250px' %} -->
+<p class="about-me__caption">{about.frontmatter.introduction[1]}</p>
+
+<hr class="about-me__divider">
+<h3 class="about-me__h3">What I usually do</h3>
+<ul class="about-me__my-wheel-group">
+    {about.frontmatter.what_i_usually_do.map((item) => (
+        <li class="about-me__wheel-item">{item}</li>
+    ))}
+</ul>
+
+<hr class="about-me__divider">
+<h3 class="about-me__h3">My skills</h3>
+<ul class="about-me__skills-group">
+    {about.frontmatter.my_skills.map((item) => (
+        <li class="about-me__skill-property">{item}</li>
+    ))}
+</ul>
+
+<hr class="about-me__divider">
+<h3 class="about-me__h3">Things I'm good at</h3>
+<div class="about-me__software-group"></ul>
+    {about.frontmatter.software_i_master.map((software) => (
+        /* TODO */
+        <img class="about-me__software-item" src={`/icons/icons--software-${software.replaceAll(' ', '')}.png`} alt={software.toUpperCase()}>
+    ))}
+</div>
+
+<hr class="about-me__divider">
+<h3 class="about-me__h3">My unfinished story</h3>
+<div class="about-me__text" set:html={about.frontmatter.my_unfinished_story}></div>
+<div class="about-me__social-media social-media">
+    <a href={contactInfo.linkedin} target="_blank" rel="noopener noreferrer">
+        <img
+            src="/icons/icons--linkedin.svg"
+            class="social-media__icon social-media__icon--behance"
+            alt="LinkedIn"
+            loading="lazy"
+        ></img>
+    </a>
+    <a href={contactInfo.behance} target="_blank" rel="noopener noreferrer">
+        <img
+            src="/icons/icons--behance.svg"
+            class="social-media__icon social-media__icon--behance"
+            alt="behance"
+            loading="lazy"
+        ></img>
+    </a>
+    <a href={contactInfo.dribble} target="_blank" rel="noopener noreferrer">
+        <img
+            src="/icons/icons--dribbble.svg"
+            class="social-media__icon social-media__icon--dribbble"
+            alt="dribbble"
+            loading="lazy"
+        ></img>
+    </a>
+    <a href={contactInfo.instagram} target="_blank" rel="noopener noreferrer">
+        <img
+            src="/icons/icons--instagram.svg"
+            class="social-media__icon social-media__icon--instagram"
+            alt="instagram"
+            loading="lazy"
+        ></img>
+    </a>
+</div>
