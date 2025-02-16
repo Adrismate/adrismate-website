@@ -1,0 +1,94 @@
+$logo-size: (
+	'small': 42px,
+	'regular': 54px,
+	'large': 128px,
+);
+
+.header {
+	width: 100vw;
+	height: 67px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	align-items: center;
+	user-select: none;
+
+	background: linear-gradient(180deg, rgba(239, 239, 240, 1) 28.65%, rgba(239, 239, 240, 0) 100%);
+	position: fixed;
+	z-index: 99;
+
+	transition: all 10ms ease-out 0s;
+
+	&__brand-icon {
+		width: map-get($map: $logo-size, $key: 'regular');
+
+		z-index: 99;
+		cursor: pointer;
+		fill: var(--color__neutrals-midnight--500);
+
+		@include breakpoint(mobile) {
+			width: map-get($map: $logo-size, $key: 'small');
+		}
+	}
+
+	&__burguer-bar-icon {
+		display: none;
+
+		@include breakpoint(tablet) {
+			width: 32px;
+			height: 32px;
+
+			position: absolute;
+			right: 28px;
+			z-index: 99;
+
+			display: flex;
+			align-items: flex-end;
+			flex-direction: column;
+			justify-content: center;
+
+			cursor: pointer;
+		}
+	}
+
+	input {
+		display: none;
+	}
+
+	label {
+		span {
+			height: 2px;
+			background: var(--color__neutrals-midnight--500);
+			transition: all 250ms cubic-bezier(0, 0.65, 0.5, 1);
+
+			&:first-of-type {
+				width: 20px;
+			}
+
+			&:last-of-type {
+				width: 100%;
+				margin-top: 10px;
+			}
+		}
+	}
+
+	input:checked {
+		~.header__burguer-bar-icon {
+			span {
+				width: 100%;
+				position: absolute;
+
+				&:first-of-type {
+					transform: rotate(45deg);
+				}
+
+				&:last-of-type {
+					transform: rotate(-45deg);
+					margin: 0;
+				}
+			}
+		}
+	}
+}

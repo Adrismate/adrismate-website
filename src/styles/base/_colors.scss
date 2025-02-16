@@ -1,0 +1,38 @@
+:root {
+	--color__neutrals-midnight--500: rgba(38, 36, 38, 1);
+	--color__neutrals-midnight--400: rgba(81, 80, 81, 1);
+	--color__neutrals-midnight--300: rgba(125, 124, 125, 1);
+	--color__neutrals-midnight--200: rgba(168, 167, 168, 1);
+
+	--color__neutrals-gallery--500: rgba(239, 239, 240, 1);
+	--color__neutrals-gallery--400: rgba(242, 242, 243, 1);
+	--color__neutrals-gallery--300: rgba(245, 245, 246, 1);
+	--color__neutrals-gallery--200: rgba(249, 249, 249, 1);
+
+	--color__primary-vanilla-ice--600: rgba(182, 164, 167, 1);
+	--color__primary-vanilla-ice--500: rgba(242, 219, 223, 1);
+	--color__primary-vanilla-ice--400: rgba(245, 226, 229, 1);
+	--color__primary-vanilla-ice--300: rgba(247, 233, 236, 1);
+	--color__primary-vanilla-ice--200: rgba(250, 241, 242, 1);
+	--color__primary-vanilla-ice--100: rgba(252, 248, 249, 1);
+
+	--color__accent-real-orange--600: rgba(128, 87, 14, 1);
+	--color__accent-real-orange--500: rgba(255, 174, 27, 1);
+	--color__accent-real-orange--400: rgba(255, 190, 73, 1);
+	--color__accent-real-orange--300: rgba(255, 206, 118, 1);
+	--color__accent-real-orange--200: rgba(255, 223, 164, 1);
+	--color__accent-real-orange--100: rgba(255, 239, 209, 1);
+	--color__accent-real-orange--50: rgba(255, 247, 233, 1);
+}
+
+:root.theme--dark {
+        --color__neutrals-midnight--500: rgba(239, 239, 240, 1);
+        --color__neutrals-midnight--400: rgba(242, 242, 243, 1);
+        --color__neutrals-midnight--300: rgba(245, 245, 246, 1);
+        --color__neutrals-midnight--200: rgba(249, 249, 249, 1);
+    
+        --color__neutrals-gallery--500: rgba(38, 36, 38, 1);
+        --color__neutrals-gallery--400: rgba(81, 80, 81, 1);
+        --color__neutrals-gallery--300: rgba(125, 124, 125, 1);
+        --color__neutrals-gallery--200: rgba(168, 167, 168, 1);
+}

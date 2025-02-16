@@ -1,0 +1,17 @@
+---
+import HeadData from '../components/HeadData.astro';
+import Header from '../components/Header.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const { title } = Astro.props;
+---
+<HeadData title={title} />
+	<Header />
+	<Nav />
+		<slot />
+		<Footer />
+    <div class="dialog__landscape-mode">Please,<br />rotate your device</div>
+</body>
+<!-- Designed and built with passion by Adrian M. Bandera (Adrismate) -->
+</html>

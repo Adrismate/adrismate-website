@@ -1,0 +1,29 @@
+.in-progress {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-neutrals-gallery-200);
+    position: absolute;
+
+    z-index: 99;
+    animation: in-progress-animation 1s ease-out 3s forwards;
+	&__text {
+        @include display-style;
+        display: block;
+        margin: 0 auto;
+
+        color: var(--color__accent-real-orange--500);
+        text-align: center;
+	}
+}
+
+@keyframes in-progress-animation {
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+        z-index: 0;
+        display: none;
+    }
+    
+}

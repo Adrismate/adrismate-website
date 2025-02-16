@@ -1,0 +1,13 @@
+---
+import HeadData from '../components/HeadData.astro';
+
+const { title } = Astro.props;
+---
+<HeadData title={title} />
+<style>
+    body{ padding: 32px 0px; }
+</style>
+<body>
+  <slot />
+</body>
+</html>

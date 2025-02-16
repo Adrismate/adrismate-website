@@ -1,0 +1,53 @@
+---
+import contactInfo from '../data/contactInfo';
+import { Picture } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+
+const matches = import.meta.glob('../pages/projects/*.md', { eager: true });
+const projects = Object.values(matches);
+---
+<Layout title="Adrismate">
+	<section class="introduction">
+		<div class="introduction__text-group"></div>
+		<a class="introduction__call-to-action">Scroll down</a>
+	</section>
+	<div class="bg-blurry-shapes">
+		<div class="bg-blurry-shapes__shape bg-blurry-shapes__shape--1"></div>
+		<div class="bg-blurry-shapes__shape bg-blurry-shapes__shape--2"></div>
+	</div>
+	<section class="projects" id="projects-section">
+		<span class="projects__time-line"></span>
+		<span class="projects__pointer"></span>
+		<div class="projects__grid">
+			{projects.map((project) => (
+				<a class="projects__project" href={project.url}>
+					{project.frontmatter.featured && (
+						<div class="projects__featured">HOT!</div>
+					)}
+					<h3 class="projects__title">{project.frontmatter.project_title}</h3>
+					<div class="projects__thumbnail-wrapper">
+						{/* TODO */}
+						<Picture
+							class="projects__thumbnail"
+							src={import(`..${project.frontmatter.thumbnail}_5000.webp`)}
+							alt={'project.frontmatter.slug'}
+							width={5000}
+							height={2100}
+							formats={['avif', 'webp']}
+							widths={[1000, 720, 480]}
+						/>
+						{/* {% include components/image.html class='projects__thumbnail' alt=project.slug main_url=project.thumbnail media_sizes='1000px, 720px, 480px' %} */}
+					</div>
+					<p class="projects__tags">{project.frontmatter.tags.map((tag) => tag.replaceAll('-', ' ')).sort().join(' — ')}</p>
+				</a>
+			))}
+		</div>
+	</section>
+	<section class="approaching">
+		<div class="approaching__group">
+			<p class="approaching__text" data-page-link="contact">Get in touch</p>
+			<p class="approaching__text" data-page-link="about_me">Know about me</p>
+		</div>
+		<button class="approaching__approaching-btn btn-special"><a href={`mailto:${contactInfo.email}`}>Get in touch</a></button>
+	</section>
+</Layout>

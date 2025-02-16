@@ -1,0 +1,223 @@
+.nav-mobile {
+  display: none;
+  z-index: 98;
+
+  @include breakpoint(tablet) {
+    width: 100%;
+    height: 0vh;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: var(--color__neutrals-gallery--500);
+
+    transition: all 250ms cubic-bezier(0, 0.76, 0.64, 1.01);
+  }
+
+  &__links-group {
+    @include button-text-style;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    text-align: center;
+
+    li {
+      overflow: hidden;
+      width: auto;
+      height: 0px;
+      transform: translateY(-28px);
+      transition: height 200ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    & > * {
+      cursor: auto;
+      &:hover {
+        opacity: 50%;
+      }
+    }
+  }
+
+  &__social-media-group {
+    flex: none;
+
+    position: absolute;
+    bottom: 64px;
+
+    opacity: 0;
+    transition: opacity 250ms ease-out;
+    justify-content: center;
+  }
+}
+
+.nav-mobile[data-menu-status='opened'] {
+  height: 100%;
+  transition: all 450ms cubic-bezier(0, 0.76, 0.64, 1.01);
+
+  .header__burguer-bar-icon {
+    span {
+      width: 100%;
+      position: absolute;
+      &:first-of-type {
+        transform: rotate(45deg);
+      }
+      &:last-of-type {
+        transform: rotate(-45deg);
+        margin: 0;
+      }
+    }
+  }
+
+  .nav-mobile {
+    &__links-group li {
+      height: 24px;
+      transform: translateY(0);
+      transition: height 500ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    &__social-media-group {
+      opacity: 1;
+      transition: opacity 550ms ease-in 200ms;
+    }
+  }
+}
+.nav-desktop {
+  &__link {
+    @include button-text-style(wide);
+
+    width: 70px;
+    height: 100%;
+    position: fixed;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    user-select: none;
+    cursor: pointer;
+
+    z-index: 99;
+
+    :before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      opacity: 0;
+
+      z-index: -2;
+      transform: scale(5);
+
+      background: radial-gradient(50% 50% at 50% 50%, var(--color__accent-real-orange--500) 0%, rgba(255, 174, 27, 0) 100%);
+      background-position: right;
+      transition: background-position 250ms ease-out, opacity 250ms ease-out, transform 250ms ease-out;
+    }
+
+    &:hover {
+      text-decoration: underline;
+
+      ::before {
+        opacity: 0.7;
+        transform: scale(7);
+        background-position: center;
+      }
+    }
+  }
+  &__link--about-me {
+    right: 0;
+  }
+
+  &__arrow {
+    width: 44px;
+    height: 129px;
+
+    display: none;
+    position: absolute;
+
+    pointer-events: none;
+
+    span {
+      height: 52%;
+
+      position: absolute;
+
+      border: 1px solid var(--color__neutrals-midnight--500);
+
+      &:last-of-type {
+        bottom: 0;
+      }
+    }
+    @mixin nav-desktop__arrow-lines-animation($line, $position, $rotation) {
+      @keyframes nav-desktop__arrow-line-#{$line}-#{$position}-animation {
+        0% {
+          opacity: 0;
+          #{$position}: 18%;
+          transform: rotate(0);
+        }
+        70% {
+          opacity: 1;
+          #{$position}: 50%;
+          transform: rotate(0);
+        }
+        100% {
+          opacity: 1;
+          #{$position}: 50%;
+          transform: rotate($rotation);
+        }
+      }
+    }
+
+    @mixin nav-desktop__arrow-animation($duration, $position) {
+      span:first-of-type {
+        animation: nav-desktop__arrow-line-top-#{$position}-animation $duration cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        transform-origin: top;
+      }
+
+      span:last-of-type {
+        animation: nav-desktop__arrow-line-bottom-#{$position}-animation $duration cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        transform-origin: bottom;
+      }
+    }
+
+    $arrow-animation-timing: 650ms;
+
+    &--left {
+      transform:rotate(180deg);
+      @include nav-desktop__arrow-lines-animation(bottom, left, 15deg);
+      @include nav-desktop__arrow-lines-animation(top, left, -15deg);
+      @include nav-desktop__arrow-animation($arrow-animation-timing, left);
+    }
+
+    &--right {
+      // transform: rotate(-90deg);
+      @include nav-desktop__arrow-lines-animation(top, right, -15deg);
+      @include nav-desktop__arrow-lines-animation(bottom, right, 15deg);
+      @include nav-desktop__arrow-animation($arrow-animation-timing, right);
+    }
+  }
+
+  &__text {
+    transform-origin: center center;
+    transform: rotate(-90deg);
+    transition: opacity 250ms ease-out;
+  }
+
+  @include breakpoint(tablet) {
+    display: none;
+  }
+}
+
+.social-media {
+  display: flex;
+  flex-direction: row;
+  gap: 28px;
+}
