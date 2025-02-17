@@ -283,5 +283,5 @@ window.addEventListener('load', () => {
   updateHeaderPosition();
 });
 
-//Imagery carrousel function
+//Imagery carrousel function (not yet implemented)
 

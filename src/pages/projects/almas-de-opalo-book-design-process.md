@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/ProjectLayout.astro
-slug: almas-de-opalo-book-design-process'
+slug: 'almas-de-opalo-book-design-process'
 project_title: 'Almas de Opalo Book Design Process'
 date: 2022-08-12
 featured: false
