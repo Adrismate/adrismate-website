@@ -1,12 +1,12 @@
 ---
 import contactInfo from '../data/contactInfo';
 import { Picture } from 'astro:assets';
-import Layout from '../layouts/Layout.astro';
+import MainLayout from '../layouts/MainLayout.astro';
 
 const matches = import.meta.glob('../pages/projects/*.md', { eager: true });
 const projects = Object.values(matches);
 ---
-<Layout title="Adrismate">
+<MainLayout title="Adrismate">
 	<section class="introduction">
 		<div class="introduction__text-group"></div>
 		<a class="introduction__call-to-action">Scroll down</a>
@@ -50,4 +50,4 @@ const projects = Object.values(matches);
 		</div>
 		<button class="approaching__approaching-btn btn-special"><a href={`mailto:${contactInfo.email}`}>Get in touch</a></button>
 	</section>
-</Layout>
+</MainLayout>

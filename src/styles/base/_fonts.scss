@@ -73,11 +73,11 @@
 	@if $platform == desktop {
 		font-size: 64px;
 		line-height: 122%;
-		letter-spacing: -1.5px;
+		letter-spacing: -0.5px;
 	} @else if $platform == mobile {
 		font-size: 38px;
 		line-height: 132%;
-		letter-spacing: -1.5px;
+		letter-spacing: -0.5px;
 	}
 	@if $bold == yes {
 		font-weight: 600;
@@ -91,11 +91,11 @@
 	@if $platform == desktop {
 		font-size: 42px;
 		line-height: 128%;
-		letter-spacing: -1.5px;
+		letter-spacing: -0.5px;
 	} @else if $platform == mobile {
 		font-size: 34px;
 		line-height: 128%;
-		letter-spacing: -1.5px;
+		letter-spacing: -0.5px;
 	}
 	@if $bold == yes {
 		font-weight: 600;

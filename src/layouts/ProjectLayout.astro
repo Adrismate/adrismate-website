@@ -9,7 +9,7 @@ import contactInfo from '../data/contactInfo';
 
 const { frontmatter } = Astro.props;
 ---
-<HeadData title={frontmatter.slug} />
+<HeadData title={"Adrismate | " + frontmatter.project_title} />
 <body>
   <Header />
   <Nav />
@@ -100,5 +100,4 @@ const { frontmatter } = Astro.props;
   <div class="dialog__landscape-mode">Please,<br />rotate your device</div>
 </body>
 <!-- Designed and built with passion by Adrian M. Bandera (Adrismate) -->
-
 </html>
