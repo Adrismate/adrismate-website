@@ -3,6 +3,6 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://Adrisamte.github.io',
-    base: '',
+    site: 'https://Adrismate.github.io',
+    base: 'adrismate-website',
 });
