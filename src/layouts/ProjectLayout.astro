@@ -7,6 +7,8 @@ import { Picture } from 'astro:assets';
 import { marked } from 'marked';
 import contactInfo from '../data/contactInfo';
 
+export let classList = 'ejemplo';
+
 const { frontmatter } = Astro.props;
 
 ---
@@ -57,14 +59,15 @@ const { frontmatter } = Astro.props;
                 {section?.assets?.map((asset) => (
                   <Fragment>
                     {asset.type === 'image' && (
-                    <Picture
-                      class={asset.class}
-                      src={import(`..${asset.main_url}`)}
-                      alt={asset.alt}
-                      widths={[480, 720, 960, 1440, 2000]}
-                      sizes={'(max-width: 480px) 480px, (max-width: 720px) 720px, (max-width: 960px) 960px, (max-width: 1440px) 1440px, (max-width: 2000px) 2000px'}
-                      formats={['avif', 'webp']}
-                      />
+                      <div class={asset.class}>
+                        <Picture
+                          src={import(`..${asset.main_url}`)}
+                          alt={asset.alt}
+                          widths={[480, 720, 960, 1440, 2000]}
+                          sizes={'(max-width: 480px) 480px, (max-width: 720px) 720px, (max-width: 960px) 960px, (max-width: 1440px) 1440px, (max-width: 2000px) 2000px'}
+                          formats={['avif', 'webp']}
+                        />
+                      </div>
                     )}
                     {asset.type === 'video' && (
                       <video class={asset.class} muted autoplay loop playsinline>
