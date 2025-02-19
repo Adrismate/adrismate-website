@@ -8,6 +8,7 @@ import { marked } from 'marked';
 import contactInfo from '../data/contactInfo';
 
 const { frontmatter } = Astro.props;
+
 ---
 <HeadData title={"Adrismate | " + frontmatter.project_title} />
 <body>
@@ -24,13 +25,13 @@ const { frontmatter } = Astro.props;
     <section class="project__top-section">
       <div class="project__cover-wrapper" style="overflow: hidden;">
         <Picture
-          src={import(`..${frontmatter.thumbnail}_5000.webp`)}
+          class={'project__cover'}
+          src={import(`..${frontmatter.thumbnail}`)}
           alt={frontmatter.slug}
-          width={5000}
-          height={2100}
-          formats={['avif', 'webp']}
-          widths={[1500, 1000, 480]}
-        />
+          widths={[480, 720, 960, 1000, 1440, 1500, 2000, 2500, 3000, 3500, 4000]}
+          sizes={'(max-width: 480px) 480px, (max-width: 720px) 720px, (max-width: 960px) 960px, (max-width: 1000px) 1000px, (max-width: 1440px) 1440px, (max-width: 1500px) 1500px, (max-width: 2000px) 2000px, (max-width: 2500px) 2500px, (max-width: 3000px) 3000px, (max-width: 35000px) 3500px, (max-width: 4000px) 4000px'}
+          format=['avif', 'webp']
+          />
       </div>
       <div class="project__intro-section">
         <h2 class="project__title">{frontmatter.project_title}</h2>
@@ -56,10 +57,14 @@ const { frontmatter } = Astro.props;
                 {section?.assets?.map((asset) => (
                   <Fragment>
                     {asset.type === 'image' && (
-                      <Fragment>
-                        {/* TODO */}
-                        {/* {% include components/image.html %} */}
-                      </Fragment>
+                    <Picture
+                      class={asset.class}
+                      src={import(`..${asset.main_url}`)}
+                      alt={asset.alt}
+                      widths={[480, 720, 960, 1440, 2000]}
+                      sizes={'(max-width: 480px) 480px, (max-width: 720px) 720px, (max-width: 960px) 960px, (max-width: 1440px) 1440px, (max-width: 2000px) 2000px'}
+                      formats={['avif', 'webp']}
+                      />
                     )}
                     {asset.type === 'video' && (
                       <video class={asset.class} muted autoplay loop playsinline>

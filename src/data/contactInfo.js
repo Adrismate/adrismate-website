@@ -1,5 +1,5 @@
 export default {
-  email: 'adrian@adrismatedesigns.com',
+  email: 'adrismatedesigns@gmail.com',
   instagram: 'https://www.instagram.com/adrismate/',
   dribble: 'https://dribbble.com/adrismate',
   behance: 'https://www.behance.net/adrismate',

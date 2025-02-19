@@ -118,7 +118,7 @@ function menuPagesToggle(targetPage) {
       burguerMenuToggle();
       break;
     case 'desktop-view':
-      buttonClicked = document.querySelector(`.nav-desktop__link--${targetPage.className.replace('_page', '')}`);
+      let buttonClicked = document.querySelector(`.nav-desktop__link--${targetPage.className.replace('_page', '')}`);
       console.log(buttonClicked);
       if (targetPage.dataset.pageStatus == 'closed') {
         targetPage.dataset.pageStatus = 'opened';
@@ -270,18 +270,18 @@ if (window.location.pathname.includes('/projects/')) {
   projectBackBtn.addEventListener('click', () => window.sessionStorage.setItem('projects-section', true));
 }
 
-//Disclaimer-minimal animation function
-let disclaimerMinimalPosition = disclaimerMinimal.getBoundingClientRect().top;
-function updateHeaderPosition() {
-  const scrollPosition = window.scrollY;
-  const newHeaderTop = Math.max(0, disclaimerMinimalPosition - scrollPosition + headerOffset);
-  header.style.top = `${newHeaderTop}px`;
-}
-window.addEventListener('scroll', updateHeaderPosition);
-window.addEventListener('load', () => {
-  disclaimerMinimalPosition = disclaimerMinimal.getBoundingClientRect().top;
-  updateHeaderPosition();
-});
+// //Disclaimer-minimal animation function
+// let disclaimerMinimalPosition = disclaimerMinimal.getBoundingClientRect().top;
+// function updateHeaderPosition() {
+//   const scrollPosition = window.scrollY;
+//   const newHeaderTop = Math.max(0, disclaimerMinimalPosition - scrollPosition + headerOffset);
+//   header.style.top = `${newHeaderTop}px`;
+// }
+// window.addEventListener('scroll', updateHeaderPosition);
+// window.addEventListener('load', () => {
+//   disclaimerMinimalPosition = disclaimerMinimal.getBoundingClientRect().top;
+//   updateHeaderPosition();
+// });
 
 //Imagery carrousel function (not yet implemented)
 

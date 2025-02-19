@@ -4,7 +4,7 @@ slug: 'almas-de-opalo-book-design-process'
 project_title: 'Almas de Opalo - Book Design Process'
 date: 2022-08-12
 featured: false
-thumbnail: '/assets/projects/almas-de-opalo-book-design-process/ado-phtshot-11-crop' # without --image-width and extension.
+thumbnail: '/assets/images/projects/almas-de-opalo-book-design-process/ado-phtshot-11-crop.jpg'
 tags:
   - Graphic Design
   - Branding
@@ -20,7 +20,7 @@ phases:
           After a long research of images, textures, colors and typographies, I’ve created a stylescape with all the essence of the project trying to show to the client the same point of view that I had and then mixing opinions for creating the unique project’s creative direction to follow.
       - assets:
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-stylescape'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-stylescape'
             class: 'project__asset-large'
             alt: 'Stylescape for the ADO project'
       - text: |
@@ -29,7 +29,7 @@ phases:
           In addition, like all the projects that I handle, I’ve used Notion for organizing, tracking and managing them, from the very early phase of the project until the end.
         assets:
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-notion-process'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-notion-process'
             class: 'project__asset-regular'
             object_position: 'left'
             alt: 'Notion snap with different notes from the meetings'
@@ -39,69 +39,69 @@ phases:
           In the meantime, the sketching process started taking place into creating different layouts for the various pages and sections of the book. Trying different page sizes, comparing them with other similar pocketbooks size, and printing them for a better perspective on how they will really look on hands.
         assets:
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-sketch-process-1'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-sketch-process-1'
             class: 'project__asset-small'
             alt: ' Layout for poesy content'
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-sketch-process-2'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-sketch-process-2'
             class: 'project__asset-small'
             alt: 'Layout for poesy content'
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-sketch-process-3'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-sketch-process-3'
             class: 'project__asset-small'
             alt: 'Test design for new chapters'
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-sketch-process-4'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-sketch-process-4'
             class: 'project__asset-small'
             alt: 'Layout for poesy content'
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-book-section-mockup'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-book-section-mockup'
             class: 'project__asset-regular'
             alt: 'Concept of the chapter pages'
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-book-section-mockup-02'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-book-section-mockup-02'
             class: 'project__asset-regular'
             alt: 'Concept of the chapter pages'
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-styled-pictures-1'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-styled-pictures-1'
             class: 'project__asset-small'
             alt: 'Different filters styles for images took by Chema'
             object_position: 'top'
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-styled-pictures-2'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-styled-pictures-2'
             class: 'project__asset-small'
             alt: 'Different filters styles for images took by Chema'
             object_position: 'top'
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-styled-pictures-3'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-styled-pictures-3'
             class: 'project__asset-small'
             height_auto: true
             alt: 'Different filters styles for images took by Chema'
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-paper-prototype'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-paper-prototype'
             class: 'project__asset-regular'
             alt: 'Two maps where the stories has been written'
             object_position: 'left'
       - assets:
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-index-first-try'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-index-first-try'
             class: 'project__asset-large'
             alt: 'Minimalist index concept'
       - text: |
           Simultaneously, the cover design process started too. From more simplistic ideas to more sophisticated ones as you can see in the images. The cover design process took about 3 weeks in total. I think it’s not about time but trying and trying different ideas, emptying your mind for a short and then, you will find the right one, for sure.
         assets:
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-first-cover-book-proposals-2'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-first-cover-book-proposals-2'
             class: 'project__asset-small'
             alt: 'One of the cover concepts for ADO'
             height_auto: true
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-first-cover-book-proposals-1'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-first-cover-book-proposals-1'
             class: 'project__asset-small'
             alt: 'One of the cover concepts for ADO'
             height_auto: true
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-first-cover-book-proposals-3'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-first-cover-book-proposals-3'
             class: 'project__asset-regular'
             alt: 'One of the cover concepts for ADO'
             height_auto: true
@@ -111,61 +111,61 @@ phases:
           As a really heavy text project, I prepared the document for creating an easy workflow for adding text and automatically creating new pages as needed, with the InDesign flowing text feature. And it really helped me a lot. Nonetheless, I had to do so many tweaks by myself due to the special layout design of the book for getting the desired final result.
         assets:
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-selfie-process'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-selfie-process'
             class: 'project__asset-regular'
             alt: 'Me and Chema on a meeting Facetime'
       - text: |
           Once we got the final product, the last but not least important phase started: printing, correcting and paying attention to not passing any little detail that could ruin the work.
         assets:
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-inside-first-page'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-inside-first-page'
             class: 'project__asset-small'
             alt: 'Almas de Ópalo first page'
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-merch-pic'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-merch-pic'
             class: 'project__asset-small'
             alt: 'First shipment with the books'
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-phtshot-8'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-phtshot-8'
             class: 'project__asset-small'
             alt: 'Chapter page final result'
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-phtshot-7'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-phtshot-7'
             class: 'project__asset-small'
             alt: 'Chapter page final result'
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-sketches'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-sketches'
             class: 'project__asset-regular'
             alt: 'Working on the river and margins for the text'
       - assets:
           - type: video
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-page-numbers.mp4'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-page-numbers.mp4'
             class: 'project__asset-large'
             alt: 'Page numbers'
       - text: |
           It’s one of the most tedious phases that concerns the whole project, and in this case, as both me and my client were so perfectionists with the little details, it took us longer than expected, but the effort was worth it.
         assets:
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-phtshot-1'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-phtshot-1'
             class: project__asset-small
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-phtshot-2'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-phtshot-2'
             class: project__asset-small
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-phtshot-3'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-phtshot-3'
             class: project__asset-small
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-phtshot-5'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-phtshot-5'
             class: project__asset-small
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-phtshot-19'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-phtshot-19'
             class: project__asset-large
       - assets:
           - type: image
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-phtshot-15-crop'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-phtshot-15-crop'
             class: project__asset-large
           - type: video
-            main_url: '/assets/projects/almas-de-opalo-book-design-process/ado-video-walkthrough.mp4'
+            main_url: '/assets/images/projects/almas-de-opalo-book-design-process/ado-video-walkthrough.mp4'
             class: project__asset-large
             alt: 'Video walkthrough'
 used_tools:

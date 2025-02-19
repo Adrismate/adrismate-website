@@ -1,5 +1,6 @@
 ---
 import '../styles/main.scss';
+import { ClientRouter, fade, slide } from 'astro:transitions';
 
 const { title } = Astro.props;
 ---
@@ -12,7 +13,8 @@ const { title } = Astro.props;
     <!-- TODO -->
     <!-- <meta name="description" content="{% if page.introduction %}{{ page.introduction }}{% else %}{{ site.description }}{% endif %}" /> -->
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#EFEFF0" />
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -20,6 +22,7 @@ const { title } = Astro.props;
     <script src="../assets/scripts/script.js"></script>
 
     <title>{title}</title>
+    <ClientRouter />
   </head>
   <!-- Google tag (gtag.js)
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2XG9RKFVWR"></script>
