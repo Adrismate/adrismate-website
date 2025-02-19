@@ -59,37 +59,15 @@ const about = Object.values(matches)[0];
 <div class="about-me__text" set:html={about.frontmatter.my_unfinished_story} />
 <div class="about-me__social-media social-media">
   <a href={contactInfo.linkedin} target="_blank" rel="noopener noreferrer">
-    <img
-      src="/icons/icons--linkedin.svg"
-      class="social-media__icon social-media__icon--behance"
-      alt="LinkedIn"
-      loading="lazy"
-    /></a
-  >
+    <img src="/icons/icons--linkedin.svg" class="social-media__icon social-media__icon--behance" alt="LinkedIn"/>
+  </a>
+  <a href={contactInfo.behance} target="_blank" rel="noopener noreferrer">
+    <img src="/icons/icons--behance.svg" class="social-media__icon social-media__icon--behance" alt="behance"/>
+  </a>
+  <a href={contactInfo.dribble} target="_blank" rel="noopener noreferrer">
+    <img src="/icons/icons--dribbble.svg" class="social-media__icon social-media__icon--dribbble" alt="dribbble"/>
+  </a>
+  <a href={contactInfo.instagram} target="_blank" rel="noopener noreferrer">
+    <img src="/icons/icons--instagram.svg" class="social-media__icon social-media__icon--instagram" alt="instagram"/>
+  </a>
 </div>
-<a href={contactInfo.behance} target="_blank" rel="noopener noreferrer">
-  <img
-    src="/icons/icons--behance.svg"
-    class="social-media__icon social-media__icon--behance"
-    alt="behance"
-    loading="lazy"
-  /></a
->
-
-<a href={contactInfo.dribble} target="_blank" rel="noopener noreferrer">
-  <img
-    src="/icons/icons--dribbble.svg"
-    class="social-media__icon social-media__icon--dribbble"
-    alt="dribbble"
-    loading="lazy"
-  /></a
->
-
-<a href={contactInfo.instagram} target="_blank" rel="noopener noreferrer">
-  <img
-    src="/icons/icons--instagram.svg"
-    class="social-media__icon social-media__icon--instagram"
-    alt="instagram"
-    loading="lazy"
-  /></a
->
