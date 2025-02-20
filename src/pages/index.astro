@@ -2,52 +2,77 @@
 import contactInfo from '../data/contactInfo';
 import { Picture } from 'astro:assets';
 import MainLayout from '../layouts/MainLayout.astro';
+import type { ImageMetadata } from 'astro';
 
+// Import all images dynamically from /src/assets/images
+const images = await Promise.all(
+    Object.entries(import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/*.{jpg,png}'))
+    .map(async ([path, imageImport]) => {
+        const image = await imageImport();
+        return { path, image: image.default };
+    })
+);
+
+// Helper function to find an image by file name
+const getImage = (fileName: string) => {
+    const found = images.find(img => img.path.endsWith(fileName));
+    console.log(`Looking for: ${fileName} → Found: ${found?.path ?? 'Not Found'}`);
+    return found ? found.image : null;
+};
+
+// Load all projects
 const matches = import.meta.glob('../pages/projects/*.md', { eager: true });
 const projects = Object.values(matches);
+console.log('Loaded Projects:', projects.map(project => project.frontmatter.project_title));
+console.log('Available Images:', images.map(img => img.path));
 ---
 <MainLayout title="Adrismate">
-	<section class="introduction">
-		<div class="introduction__text-group"></div>
-		<a class="introduction__call-to-action">Scroll down</a>
-	</section>
-	<div class="bg-blurry-shapes">
-		<div class="bg-blurry-shapes__shape bg-blurry-shapes__shape--1"></div>
-		<div class="bg-blurry-shapes__shape bg-blurry-shapes__shape--2"></div>
-	</div>
-	<section class="projects" id="projects-section">
-		<span class="projects__time-line"></span>
-		<span class="projects__pointer"></span>
-		<div class="projects__grid">
-			{projects.map((project) => (
-				<a class="projects__project" href={project.url}>
-					{project.frontmatter.featured && (
-						<div class="projects__featured">HOT!</div>
-					)}
-					<h3 class="projects__title">{project.frontmatter.project_title}</h3>
-					<div class="projects__thumbnail-wrapper">
-						{/* TODO */}
-						<Picture
-							class="projects__thumbnail"
-							src={import(`..${project.frontmatter.thumbnail}`)}
-							alt={'project.frontmatter.slug'}
-							width={5000}
-							height={2100}
-							formats={['avif', 'webp']}
-							widths={[1000, 720, 480]}
-						/>
-						{/* {% include components/image.html class='projects__thumbnail' alt=project.slug main_url=project.thumbnail media_sizes='1000px, 720px, 480px' %} */}
-					</div>
-					<p class="projects__tags">{project.frontmatter.tags.map((tag) => tag.replaceAll('-', ' ')).sort().join(' — ')}</p>
-				</a>
-			))}
-		</div>
-	</section>
-	<section class="approaching">
-		<div class="approaching__group">
-			<p class="approaching__text" data-page-link="contact">Get in touch</p>
-			<p class="approaching__text" data-page-link="about_me">Know about me</p>
-		</div>
-		<button class="approaching__approaching-btn btn-special"><a href={`mailto:${contactInfo.email}`}>Get in touch</a></button>
-	</section>
+    <section class="introduction">
+        <div class="introduction__text-group"></div>
+        <a class="introduction__call-to-action">Scroll down</a>
+    </section>
+    <div class="bg-blurry-shapes">
+        <div class="bg-blurry-shapes__shape bg-blurry-shapes__shape--1"></div>
+        <div class="bg-blurry-shapes__shape bg-blurry-shapes__shape--2"></div>
+    </div>
+    <section class="projects" id="projects-section">
+        <span class="projects__time-line"></span>
+        <span class="projects__pointer"></span>
+        <div class="projects__grid">
+            {projects.map((project) => (
+                <a class="projects__project" href={project.url}>
+                    {project.frontmatter.featured && (
+                        <div class="projects__featured">HOT!</div>
+                    )}
+                    <h3 class="projects__title">{project.frontmatter.project_title}</h3>
+                    <div class="projects__thumbnail-wrapper">
+                        {getImage(project.frontmatter.thumbnail) ? (
+                            <Picture
+                                class="projects__thumbnail"
+                                src={getImage(project.frontmatter.thumbnail)}
+                                alt={project.frontmatter.slug}
+                                widths={[480, 720, 1000]}
+                                sizes="(max-width: 480px) 480px, (max-width: 720px) 720px, (max-width: 1000px) 1000px"
+                                formats={['avif', 'webp']}
+                            />
+                        ) : (
+                            <p>Image not found: {project.frontmatter.thumbnail}</p>
+                        )}
+                    </div>
+                    <p class="projects__tags">
+                        {project.frontmatter.tags.map((tag) => tag.replaceAll('-', ' ')).sort().join(' — ')}
+                    </p>
+                </a>
+            ))}
+        </div>
+    </section>
+    <section class="approaching">
+        <div class="approaching__group">
+            <p class="approaching__text" data-page-link="contact">Get in touch</p>
+            <p class="approaching__text" data-page-link="about_me">Know about me</p>
+        </div>
+        <button class="approaching__approaching-btn btn-special">
+            <a href={`mailto:${contactInfo.email}`}>Get in touch</a>
+        </button>
+    </section>
 </MainLayout>
