@@ -1,5 +1,5 @@
 // IMPORT STRUCUTRE
-@import "base/01-base-dir";
-@import "components/01-components-dir";
-@import "includes/01-includes-dir";
-@import "pages/01-pages-dir";
+@use "base/01-base-dir" as *;
+@use "components/01-components-dir" as *;
+@use "includes/01-includes-dir" as *;
+@use "pages/01-pages-dir"as *;

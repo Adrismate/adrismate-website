@@ -17,7 +17,7 @@ $spacer-xxxl: 80px;
 
 //scale DOWN
 @mixin breakpoint($size: laptop) {
-  @media (max-width: map-get($breakpoints, $size)) {
+  @media (max-width: map.get($breakpoints, $size)) {
     @content;
   }
 }

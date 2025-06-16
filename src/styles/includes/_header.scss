@@ -22,14 +22,14 @@ $logo-size: (
 	transition: all 10ms ease-out 0s;
 
 	&__brand-icon {
-		width: map-get($map: $logo-size, $key: 'regular');
+		width: map.get($logo-size,'regular');
 
 		z-index: 99;
 		cursor: pointer;
 		fill: var(--color__neutrals-midnight--500);
 
 		@include breakpoint(mobile) {
-			width: map-get($map: $logo-size, $key: 'small');
+			width: map.get($logo-size, 'small');
 		}
 	}
 
