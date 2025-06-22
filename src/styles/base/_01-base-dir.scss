@@ -1,4 +1,4 @@
-@import "abstracts";
-@import "colors";
-@import "fonts";
-@import "reset";
+@use "abstracts" as abstracts;
+@use "colors" as colors;
+@use "fonts" as fonts;
+@use "reset" as reset;

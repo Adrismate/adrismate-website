@@ -1,9 +1,13 @@
+@use '../base/abstracts' as abstracts;
+@use '../base/fonts' as fonts;
+@use '../components/buttons' as buttons;
+
 @mixin navegation-wrapper {
   padding: 92px 134px 0px 134px;
-  @include breakpoint(tablet) {
+  @include abstracts.breakpoint(tablet) {
     padding: 92px 64px 0px 64px;
   }
-  @include breakpoint(mobile) {
+  @include abstracts.breakpoint(mobile) {
     padding: 92px 28px 0px 28px;
   }
 }
@@ -79,7 +83,7 @@
   }
 
   // -- Mobile view --
-  @include breakpoint(tablet) {
+  @include abstracts.breakpoint(tablet) {
     transform: translateX(0);
     display: none;
     position: relative;
@@ -90,42 +94,42 @@
     }
   }
   &__title {
-    @include h1-style(desktop);
+    @include fonts.h1-style(desktop);
     font-size: clamp(58px, 6.6vw, 114px);
-    @include breakpoint(tablet) {
+    @include abstracts.breakpoint(tablet) {
       font-size: clamp(58px, 10.6vw, 114px);
       width: 100%;
     }
   }
 
   &__subtitle {
-    @include h4-style(desktop);
+    @include fonts.h4-style(desktop);
     margin-top: 64px;
     max-width: 333px;
-    @include breakpoint(tablet) {
-      @include h4-style(mobile);
+    @include abstracts.breakpoint(tablet) {
+      @include fonts.h4-style(mobile);
     }
   }
 
   &__caption {
-    @include caption-style(desktop);
+    @include fonts.caption-style(desktop);
     max-width: 300px;
     margin-top: auto;
     margin-bottom: 34px;
 
-    @include breakpoint(tablet) {
-      @include caption-style(mobile);
+    @include abstracts.breakpoint(tablet) {
+      @include fonts.caption-style(mobile);
       margin: auto auto 34px auto;
       text-align: center;
     }
   }
 
   &__email-button {
-    @include btn-style(primary, special);
+    @include buttons.btn-style(primary, special);
     max-width: 318px;
     margin-bottom: 43px;
     z-index: -1;
-    @include breakpoint(tablet) {
+    @include abstracts.breakpoint(tablet) {
       margin: 0 auto 16vh auto;
       width: 412px;
     }
@@ -156,7 +160,7 @@
   }
 
   // -- Mobile view --
-  @include breakpoint(tablet) {
+  @include abstracts.breakpoint(tablet) {
     width: 100%;
 
     display: none;
@@ -170,19 +174,19 @@
   }
 
   &__title {
-    @include h1-style(desktop);
+    @include fonts.h1-style(desktop);
     font-size: clamp(58px, 6.6vw, 114px);
     white-space: nowrap;
-    @include breakpoint(tablet) {
-      @include h1-style(mobile);
+    @include abstracts.breakpoint(tablet) {
+      @include fonts.h1-style(mobile);
     }
   }
   &__subtitle {
-    @include h4-style(desktop, yes);
+    @include fonts.h4-style(desktop, yes);
     margin-top: 158px;
     max-width: 460px;
-    @include breakpoint(tablet) {
-      @include h4-style(mobile);
+    @include abstracts.breakpoint(tablet) {
+      @include fonts.h4-style(mobile);
       margin: 60px 0 34px 0;
       max-width: initial;
     }
@@ -199,21 +203,21 @@
     object-fit: cover;
     object-position: center;
 
-    @include breakpoint(mobile) {
+    @include abstracts.breakpoint(mobile) {
       width: 100%;
       margin: 0 auto;
     }
   }
 
   &__caption {
-    @include caption-style(desktop, yes);
+    @include fonts.caption-style(desktop, yes);
     display: block;
     max-width: 452px;
     margin-left: auto;
     text-indent: 48px;
 
-    @include breakpoint(tablet) {
-      @include caption-style(mobile);
+    @include abstracts.breakpoint(tablet) {
+      @include fonts.caption-style(mobile);
       margin: 34px 0;
       max-width: initial;
     }
@@ -227,29 +231,29 @@
   }
 
   &__h3 {
-    @include h3-style(desktop);
+    @include fonts.h3-style(desktop);
     margin-bottom: 34px;
 
-    @include breakpoint(tablet) {
-      @include h3-style(mobile);
+    @include abstracts.breakpoint(tablet) {
+      @include fonts.h3-style(mobile);
     }
   }
 
   &__my-wheel-group {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(270px, 300px));
-    row-gap: $spacer-s;
+    row-gap: abstracts.$spacer-s;
   }
 
   &__wheel-item {
-    @include body-style(desktop);
+    @include fonts.body-style(desktop);
 
     text-transform: capitalize;
     &:before {
       content: '> ';
     }
-    @include breakpoint(tablet) {
-      @include body-style(mobile);
+    @include abstracts.breakpoint(tablet) {
+      @include fonts.body-style(mobile);
     }
   }
 
@@ -258,7 +262,7 @@
     flex-wrap: wrap;
     isolation: isolate;
 
-    @include breakpoint(mobile) {
+    @include abstracts.breakpoint(mobile) {
       // max-width: 180px;
       column-gap: 8px;
       row-gap: 16px;
@@ -280,7 +284,7 @@
   &__software-item + &__software-item {
     margin-left: -8px;
 
-    @include breakpoint(mobile) {
+    @include abstracts.breakpoint(mobile) {
       margin: initial;
     }
   }
@@ -293,7 +297,7 @@
   }
 
   &__skill-property {
-    @include caption-style(desktop, yes);
+    @include fonts.caption-style(desktop, yes);
     display: inline;
     padding: 8px 24px;
     text-align: center;
@@ -302,8 +306,8 @@
     border-radius: 200px;
     user-select: none;
 
-    @include breakpoint(mobile) {
-      @include caption-style(mobile, yes);
+    @include abstracts.breakpoint(mobile) {
+      @include fonts.caption-style(mobile, yes);
     }
 
     &:hover{
@@ -312,7 +316,7 @@
   }
 
   &__text {
-    @include body-style(desktop);
+    @include fonts.body-style(desktop);
     line-height: 148%;
     margin-bottom: 214px;
     text-align: left;
@@ -320,18 +324,18 @@
       margin-top: 24px;
     }
     span {
-      @include h4-style(desktop, yes);
+      @include fonts.h4-style(desktop, yes);
       display: inline-block;
       margin-top: 34px;
       text-indent: 48px;
 
-      @include breakpoint(tablet) {
-        @include h4-style(mobile, yes);
+      @include abstracts.breakpoint(tablet) {
+        @include fonts.h4-style(mobile, yes);
       }
     }
 
-    @include breakpoint(tablet) {
-      @include body-style(mobile);
+    @include abstracts.breakpoint(tablet) {
+      @include fonts.body-style(mobile);
     }
   }
 
@@ -340,7 +344,7 @@
     margin-left: auto;
     margin-bottom: 56px;
 
-    @include breakpoint(mobile) {
+    @include abstracts.breakpoint(mobile) {
       margin: 0 auto 94px auto;
     }
 

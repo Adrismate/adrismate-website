@@ -1,8 +1,11 @@
+@use '../base/abstracts' as abstracts;
+@use '../base/fonts' as fonts;
+
 .nav-mobile {
   display: none;
   z-index: 98;
 
-  @include breakpoint(tablet) {
+  @include abstracts.breakpoint(tablet) {
     width: 100%;
     height: 0vh;
 
@@ -20,7 +23,7 @@
   }
 
   &__links-group {
-    @include button-text-style;
+    @include fonts.button-text-style;
     display: flex;
     flex-direction: column;
     gap: 48px;
@@ -87,7 +90,7 @@
 }
 .nav-desktop {
   &__link {
-    @include button-text-style(wide);
+    @include fonts.button-text-style(wide);
 
     width: 70px;
     height: 100%;
@@ -211,7 +214,7 @@
     transition: opacity 250ms ease-out;
   }
 
-  @include breakpoint(tablet) {
+  @include abstracts.breakpoint(tablet) {
     display: none;
   }
 }

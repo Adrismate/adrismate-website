@@ -1,4 +1,4 @@
-@import "index";
-@import "project";
-@import "design-system";
-@import "in-progress";
+@use "index" as index;
+@use "project" as project;
+@use "design-system" as designSystem;
+@use "in-progress" as inProgress;

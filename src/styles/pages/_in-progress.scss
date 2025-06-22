@@ -1,3 +1,5 @@
+@use '../base/fonts' as fonts;
+
 .in-progress {
     width: 100vw;
     height: 100vh;
@@ -7,7 +9,7 @@
     z-index: 99;
     animation: in-progress-animation 1s ease-out 3s forwards;
 	&__text {
-        @include display-style;
+        @include fonts.display-style;
         display: block;
         margin: 0 auto;
 

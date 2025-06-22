@@ -1,13 +1,16 @@
+@use '../base/abstracts' as abstracts;
+@use '../base/fonts' as fonts;
+
 .footer {
-	@include wrapper;
-	@include label-style(desktop);
+	@include abstracts.wrapper;
+	@include fonts.label-style(desktop);
 	width: 100%;
 	height: auto;
 	position: relative;
-	margin-top: $spacer-l;
+	margin-top: abstracts.$spacer-l;
 	overflow: hidden;
-	@include breakpoint(mobile) {
-		@include label-style(mobile);
+	@include abstracts.breakpoint(mobile) {
+		@include fonts.label-style(mobile);
 	}
 	&__line {
 		border: 1px solid var(--color__neutrals-midnight--500);
@@ -21,7 +24,7 @@
 		& > *:hover{
 			opacity: 60%;
 		}
-		@include breakpoint(mobile) {
+		@include abstracts.breakpoint(mobile) {
 			flex-direction: column-reverse;
 			text-align: center;
 			align-items: center;
@@ -30,7 +33,7 @@
 	}
 	&__turn-up {
 		cursor: pointer;
-		@include breakpoint(mobile) {
+		@include abstracts.breakpoint(mobile) {
 			display: none;
 		}
 	}

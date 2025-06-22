@@ -1,3 +1,6 @@
+@use 'sass:map';
+@use '../base/abstracts' as abstracts;
+
 $logo-size: (
 	'small': 42px,
 	'regular': 54px,
@@ -28,7 +31,7 @@ $logo-size: (
 		cursor: pointer;
 		fill: var(--color__neutrals-midnight--500);
 
-		@include breakpoint(mobile) {
+		@include abstracts.breakpoint(mobile) {
 			width: map.get($logo-size, 'small');
 		}
 	}
@@ -36,7 +39,7 @@ $logo-size: (
 	&__burguer-bar-icon {
 		display: none;
 
-		@include breakpoint(tablet) {
+		@include abstracts.breakpoint(tablet) {
 			width: 32px;
 			height: 32px;
 

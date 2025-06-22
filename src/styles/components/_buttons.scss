@@ -2,109 +2,109 @@
 //Font size
 //Icons (left or right)
 
-// @import "/base/colors";
-// @import "/base/fonts";
+@use '../base/fonts' as fonts;
+@use '../base/colors' as colors;
 
 @mixin btn-style($type: primary, $special: no) {
-  @include manrope-font;
-  @include button-text-style;
-  width: 100%;
-  min-width: fit-content;
-  max-width: 400px;
+	@include fonts.manrope-font;
+	@include fonts.button-text-style;
+	width: 100%;
+	min-width: fit-content;
+	max-width: 400px;
 
-  display: inline-block;
-  position: relative;
+	display: inline-block;
+	position: relative;
 
-  text-align: center;
-  text-transform: uppercase;
+	text-align: center;
+	text-transform: uppercase;
 
-  padding: 14px 28px;
-  border-radius: 126px;
+	padding: 14px 28px;
+	border-radius: 126px;
 
-  transition: all 0.2s;
+	transition: all 0.2s;
 
-  @if $type == primary {
-    background-color: var(--color__neutrals-midnight--500);
-    color: var(--color__neutrals-gallery--500);
-    border: 1px solid var(--color__neutrals-midnight--400);
+	@if $type == primary {
+		background-color: var(--color__neutrals-midnight--500);
+		color: var(--color__neutrals-gallery--500);
+		border: 1px solid var(--color__neutrals-midnight--400);
 
-    &:hover {
-      background-color: var(--color__neutrals-midnight--300);
-      border-color: inherit;
-    }
+		&:hover {
+			background-color: var(--color__neutrals-midnight--300);
+			border-color: inherit;
+		}
 
-    & > img {
-      width: 32px;
-      filter: brightness(100);
-    }
-  }
+		& > img {
+			width: 32px;
+			filter: brightness(100);
+		}
+	}
 
-  @if $type == secundary {
-    border: 1px solid var(--color__neutrals-midnight--500);
-    background-color: var(--color__neutrals-gallery--500);
-    color: var(--color__neutrals-midnight--500);
+	@if $type == secundary {
+		border: 1px solid var(--color__neutrals-midnight--500);
+		background-color: var(--color__neutrals-gallery--500);
+		color: var(--color__neutrals-midnight--500);
 
-    &:hover {
-      background-color: var(--color__neutrals-midnight--200);
-      border-color: inherit;
-    }
-    & > img {
-      width: 32px;
-      filter: brightness(0);
-    }
-  }
+		&:hover {
+			background-color: var(--color__neutrals-midnight--200);
+			border-color: inherit;
+		}
+		& > img {
+			width: 32px;
+			filter: brightness(0);
+		}
+	}
 
-  @if $special == special {
-    box-shadow: 0 23px 74px 34px rgba(255, 174, 27, 0.4), 12px -10px 200px 130px rgba(242, 219, 223, 1);
+	@if $special == special {
+		box-shadow: 0 23px 74px 34px rgba(255, 174, 27, 0.4), 12px -10px 200px 130px rgba(242, 219, 223, 1);
 
-    &:hover{
-      transform: scale(1.05);
-    }
-  }
+		&:hover {
+			transform: scale(1.05);
+		}
+	}
 }
 
 .night-mode-toggle {
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: 2px;
-  $size: 32px;
-  height: $size;
-  width: $size * 2;
-  background: var(--color__neutrals-midnight--500);
-  border-radius: $size;
-  transition: all 25ms ease-in-out;
+	position: relative;
+	display: flex;
+	align-items: center;
+	padding: 2px;
+	$size: 32px;
+	height: $size;
+	width: $size * 2;
+	background: var(--color__neutrals-midnight--500);
+	border-radius: $size;
+	transition: all 25ms ease-in-out;
 
-  &::after {
-    content: '';
-    height: $size - 4px;
-    width: $size - 4px;
-    border-radius: $size;
-    position: absolute;
-  }
-  &--day {
-    background: var(--color__neutrals-midnight--500);
-    &::after {
-      background: var(--color__neutrals-gallery--500);
-    }
-  }
-  &--night {
-    background: var(--color__neutrals-gallery--500);
-    &::after {
-      background: var(--color__neutrals-midnight--500);
-      right: 0;
-    }
-  }
+	&::after {
+		content: "";
+		height: $size - 4px;
+		width: $size - 4px;
+		border-radius: $size;
+		position: absolute;
+	}
+	&--day {
+		background: var(--color__neutrals-midnight--500);
+		&::after {
+			background: var(--color__neutrals-gallery--500);
+		}
+	}
+	&--night {
+		background: var(--color__neutrals-gallery--500);
+		&::after {
+			background: var(--color__neutrals-midnight--500);
+			right: 0;
+		}
+	}
 }
 
 button {
-  &.btn-primary {
-    @include btn-style(primary);
-  }
-  &.btn-secundary {
-    @include btn-style(secundary);
-  }
-  &.btn-special {
-    @include btn-style(primary, special);
-  }
+	&.btn-primary {
+		@include btn-style(primary);
+	}
+	&.btn-secundary {
+		@include btn-style(secundary);
+	}
+	&.btn-special {
+		@include btn-style(primary, special);
+	}
 }

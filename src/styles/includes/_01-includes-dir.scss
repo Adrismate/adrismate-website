@@ -1,4 +1,4 @@
-@import "header";
-@import "footer";
-@import "nav";
-@import "contact-&-about-me";
+@use "header" as header;
+@use "footer" as footer;
+@use "nav" as nav;
+@use "contact-about-me" as contactAboutMe;

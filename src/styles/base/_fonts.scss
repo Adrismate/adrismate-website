@@ -35,7 +35,6 @@
 	font-style: normal;
 }
 
-
 @mixin manrope-font {
 	font-family: 'Manrope';
 	font-style: normal;
@@ -54,6 +53,7 @@
 	line-height: 92%;
 	text-transform: uppercase;
 }
+
 @mixin h1-style($platform) {
 	@include cormorant-font;
 	text-transform: uppercase;

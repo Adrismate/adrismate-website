@@ -1,45 +1,49 @@
+@use '../base/abstracts' as abstracts;
+@use '../base/fonts' as fonts;
+@use '../components/buttons' as buttons;
+
 .container{
   display: flex;
   flex-direction: column;
   gap: 16px;
-  @include wrapper;
+  @include abstracts.wrapper;
 }
 .display-style {
-  @include cormorant-font;
-  @include display-style;
+  @include fonts.cormorant-font;
+  @include fonts.display-style;
   &--manrope {
-    @include manrope-font;
+    @include fonts.manrope-font;
     font-weight: 200;
   }
 }
 .body-regular {
-  @include body-style(desktop);
+  @include fonts.body-style(desktop);
 }
 .body-small {
-  @include body-style(desktop, $size: little);
+  @include fonts.body-style(desktop, $size: little);
 }
 .button-text {
-  @include button-text-style;
+  @include fonts.button-text-style;
   &--wide {
-    @include button-text-style(wide);
+    @include fonts.button-text-style(wide);
   }
 }
 .caption-text {
-  @include caption-style(desktop);
+  @include fonts.caption-style(desktop);
   &--semibold {
-    @include caption-style(desktop, $bold: yes);
+    @include fonts.caption-style(desktop, $bold: yes);
   }
 }
 
 .label-text {
-  @include label-style(desktop);
+  @include fonts.label-style(desktop);
    &--semibold {
-    @include label-style(desktop, $bold: yes);
+    @include fonts.label-style(desktop, $bold: yes);
   }
 }
 .button-primary{
-  @include btn-style;
+  @include buttons.btn-style;
 }
 .button-secundary{
-  @include btn-style(secundary);
+  @include buttons.btn-style(secundary);
 }
