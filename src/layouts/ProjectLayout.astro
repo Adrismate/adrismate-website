@@ -91,7 +91,9 @@ console.log("Imported Image Paths:", images.map(img => img.path));
                     {/* Handle Videos */}
                     {asset.type === 'video' && (
                       <video class={asset.class} muted autoplay loop playsinline>
-                        <source src={`/src/assets/images/${asset.file_name}`} type="video/mp4" />
+                        <source 
+                          src={asset.file_name.startsWith('http') ? asset.file_name : `/src/assets/images/${asset.file_name}`} 
+                          type="video/mp4" />
                         Your browser does not support the video tag.
                       </video>
                     )}

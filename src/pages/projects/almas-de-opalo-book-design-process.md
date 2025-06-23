@@ -135,7 +135,7 @@ phases:
             alt: 'Working on the river and margins for the text'
       - assets:
           - type: video
-            file_name: 'ado-page-numbers.mp4'
+            file_name: 'https://adrismate-website.s3.eu-north-1.amazonaws.com/videos/ado-page-numbers.mp4'
             class: 'project__asset-large'
             alt: 'Page numbers'
       - text: |
@@ -167,7 +167,7 @@ phases:
             class: project__asset-large
             alt: 'something here'
           - type: video
-            file_name: 'ado-video-walkthrough.mp4'
+            file_name: 'https://adrismate-website.s3.eu-north-1.amazonaws.com/videos/ado-video-walkthrough.mp4'
             class: project__asset-large
             alt: 'Video walkthrough'
 used_tools:
