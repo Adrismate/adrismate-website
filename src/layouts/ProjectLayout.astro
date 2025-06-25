@@ -92,7 +92,7 @@ console.log(`Looking for thumbnail: ${frontmatter.thumbnail} → Found: ${assetM
 											{asset?.type === "video" && (
 												<Fragment>
 													{console.log(`Attempting to load video: ${asset.file_name} for ${frontmatter.slug}`)}
-													<div class={asset.class}>
+													<div class={asset.class} transition:persist>
 														{asset.file_name.startsWith("http") ? (
 															<video muted autoplay loop playsinline preload="auto">
 																<source src={asset.file_name} type="video/mp4" />
