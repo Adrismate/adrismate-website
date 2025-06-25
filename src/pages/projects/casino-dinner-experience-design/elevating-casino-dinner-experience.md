@@ -1,9 +1,9 @@
 ---
-layout: ../../layouts/ProjectLayout.astro
-slug: 'elevating-casino-dinner-experience'
+layout: /src/layouts/ProjectLayout.astro
+slug: 'casino-dinner-experience-design'
 project_title: 'Case study: Elevating dinner experience to the next level'
 date: 2021-10-01
-featured: true
+featured: false
 thumbnail: 'cover-frame.png'
 tags:
   - UX UI Design

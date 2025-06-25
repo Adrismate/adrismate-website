@@ -5,7 +5,7 @@ export default defineConfig({
   site: 'https://adrismate-website-astro.pages.dev',
   base: '',
   vite: {
-    assetsInclude: ['**/*.jpg', '**/*.png', '**/*.mp4'],
+    assetsInclude: ['**/*.jpg', '**/*.jpeg', '**/*.png', '**/*.mp4'],
     build: {
       rollupOptions: {
         output: {

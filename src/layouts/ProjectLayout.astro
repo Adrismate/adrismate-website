@@ -1,32 +1,23 @@
 ---
-import type { ImageMetadata } from 'astro';
-import { Picture } from 'astro:assets';
-import HeadData from '../components/HeadData.astro';
-import Header from '../components/Header.astro';
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
-import { marked } from 'marked';
-import contactInfo from '../data/contactInfo';
+import ResponsivePicture from '../components/ResponsivePicture.astro';
+import HeadData from "../components/HeadData.astro";
+import Header from "../components/Header.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { marked } from "marked";
+import contactInfo from "../data/contactInfo";
+import { getProjectAssets, getImage } from '../utils/assets';
 
 const { frontmatter } = Astro.props;
 
-// Import all images dynamically
-const images = await Promise.all(
-    Object.entries(import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/*.{jpg,png,mp4}'))
-    .map(async ([path, imageImport]) => {
-        const image = await imageImport();
-        return { path, image: image.default };
-    })
-);
+// Get project assets
+const assetMap = await getProjectAssets(frontmatter.slug);
 
-// Helper function to find an image by file name
-const getImage = (fileName: string) => {
-    const found = images.find(img => img.path.endsWith(fileName));
-    return found ? found.image : null;
-};
-
-console.log("Imported Image Paths:", images.map(img => img.path));
+// Debug asset map and thumbnail lookup
+console.log(`Asset map for project ${frontmatter.slug}:`, Object.keys(assetMap));
+console.log(`Looking for thumbnail: ${frontmatter.thumbnail} → Found: ${assetMap[frontmatter.thumbnail] ? 'Yes' : 'No'}`);
 ---
+
 <HeadData title={"Adrismate | " + frontmatter.project_title} />
 <body>
   <Header />
@@ -41,59 +32,48 @@ console.log("Imported Image Paths:", images.map(img => img.path));
     </a>
     <section class="project__top-section">
       <div class="project__cover-wrapper" style="overflow: hidden;">
-        <Picture
-          class={'project__cover'}
-          src={getImage(frontmatter.thumbnail)}
+        <ResponsivePicture
+          src={assetMap[frontmatter.thumbnail]}
           alt={frontmatter.slug}
-          widths={[480, 720, 960, 1000, 1440, 1500, 2000, 2500, 3000, 3500, 4000]}
-          sizes={'(max-width: 480px) 480px, (max-width: 720px) 720px, (max-width: 960px) 960px, (max-width: 1000px) 1000px, (max-width: 1440px) 1440px, (max-width: 1500px) 1500px, (max-width: 2000px) 2000px, (max-width: 2500px) 2500px, (max-width: 3000px) 3000px, (max-width: 35000px) 3500px, (max-width: 4000px) 4000px'}
-          formats={['avif', 'webp']}
-          />
+          class="project__cover"
+        />
       </div>
       <div class="project__intro-section">
         <h2 class="project__title">{frontmatter.project_title}</h2>
         <div class="project__metadata">
-          <p class="project__metadata-text">{frontmatter.tags.map((tag) => tag.replaceAll('-', ' ')).sort().join(' — ')}</p>
-          <p class="project__metadata-text">{new Date(frontmatter.date).toLocaleDateString('es').replaceAll('/', '-')}</p>
-          {frontmatter.client && (
-            <p class="project__metadata-text">{frontmatter.client}</p>
-          )}
+          <p class="project__metadata-text">
+            {frontmatter.tags.map((tag) => tag.replaceAll("-", " ")).sort().join(" — ")}
+          </p>
+          <p class="project__metadata-text">{new Date(frontmatter.date).toLocaleDateString("es").replaceAll("/", "-")}</p>
+          {frontmatter.client && <p class="project__metadata-text">{frontmatter.client}</p>}
         </div>
-        <div class="project__introduction-text" set:html={marked.parse(frontmatter.introduction)}></div>
+        <div class="project__introduction-text" set:html={marked.parse(frontmatter.introduction)} />
       </div>
     </section>
     <section class="project__content-section">
       {frontmatter.phases.map((phase) => (
-        <div class="project__phase" data-phase-title={phase.title + ' phase' }>
+        <div class="project__phase" data-phase-title={phase.title + " phase"}>
           {phase.sections.map((section) => (
             <div class="project__phase-section">
-              {section.text && (
-                <div class="project__phase-section-text" set:html={marked.parse(section.text)}></div>
-              )}
+              {section.text && <div class="project__phase-section-text" set:html={marked.parse(section.text)} />}
               <div class="project__phase-section-assets">
                 {section?.assets?.map((asset) => (
                   <Fragment>
-                    {/* Handle Images */}
-                    {asset.type === 'image' && getImage(asset.file_name) ? (
+                    {asset?.type === "image" && (
                       <div class={asset.class}>
-                        <Picture
-                          src={getImage(asset.file_name)}
+                        <ResponsivePicture
+                          src={assetMap[asset.file_name]}
                           alt={asset.alt}
-                          widths={[480, 720, 960, 1440, 2000]}
-                          sizes="(max-width: 480px) 480px, (max-width: 720px) 720px, (max-width: 960px) 960px, (max-width: 1440px) 1440px, (max-width: 2000px) 2000px"
-                          formats={['avif', 'webp']}
+                          class={asset.class}
                         />
                       </div>
-                    ) : (
-                      asset.type === 'image' && <p>Image not found: {asset.file_name}</p>
                     )}
-
-                    {/* Handle Videos */}
-                    {asset.type === 'video' && (
+                    {asset?.type === "video" && (
                       <video class={asset.class} muted autoplay loop playsinline>
-                        <source 
-                          src={asset.file_name.startsWith('http') ? asset.file_name : `/src/assets/images/${asset.file_name}`} 
-                          type="video/mp4" />
+                        <source
+                          src={asset.file_name.startsWith("http") ? asset.file_name : (assetMap[asset.file_name.split('?')[0]]?.src ?? "")}
+                          type="video/mp4"
+                        />
                         Your browser does not support the video tag.
                       </video>
                     )}
@@ -102,7 +82,7 @@ console.log("Imported Image Paths:", images.map(img => img.path));
               </div>
             </div>
           ))}
-          <span class="project__sticky-element-hidder"></span>
+          <span class="project__sticky-element-hidder" />
         </div>
       ))}
     </section>
@@ -114,9 +94,7 @@ console.log("Imported Image Paths:", images.map(img => img.path));
         <Fragment>
           <h3 class="project__used-tools-title">Tools I used</h3>
           {frontmatter.used_tools.map((tool) => (
-            <img
-              src={`/icons/icons--software-${tool.replaceAll(' ', '').toLowerCase()}.png`}
-              alt={tool.toUpperCase()}>
+            <img src={`/icons/icons--software-${tool.replaceAll(" ", "").toLowerCase()}.png`} alt={tool.toUpperCase()} />
           ))}
         </Fragment>
       )}
@@ -126,9 +104,8 @@ console.log("Imported Image Paths:", images.map(img => img.path));
       <button class="project__approaching-btn btn-special"><a href={`mailto:${contactInfo.email}`}>Get in touch</a></button>
     </section>
   </div>
-  </section>
-  <Footer />
-  <div class="dialog__landscape-mode">Please,<br />rotate your device</div>
 </body>
+<Footer />
+<div class="dialog__landscape-mode">Please,<br />rotate your device</div>
+
 <!-- Designed and built with passion by Adrian M. Bandera (Adrismate) -->
-</html>
