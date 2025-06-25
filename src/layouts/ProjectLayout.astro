@@ -69,13 +69,24 @@ console.log(`Looking for thumbnail: ${frontmatter.thumbnail} → Found: ${assetM
                       </div>
                     )}
                     {asset?.type === "video" && (
-                      <video class={asset.class} muted autoplay loop playsinline>
-                        <source
-                          src={asset.file_name.startsWith("http") ? asset.file_name : (assetMap[asset.file_name.split('?')[0]]?.src ?? "")}
-                          type="video/mp4"
-                        />
-                        Your browser does not support the video tag.
-                      </video>
+                      <Fragment>
+                        {console.log(`Loading video: ${asset.file_name} for ${frontmatter.slug}`)}
+                        <video
+                          class={asset.class}
+                          muted
+                          autoplay
+                          loop
+                          playsinline
+                          preload="auto"
+                          onerror="this.src = this.src; console.error('Video failed to load:', this.src)"
+                        >
+                          <source
+                            src={asset.file_name.startsWith("http") ? asset.file_name : (assetMap[asset.file_name.split('?')[0]]?.src ?? "")}
+                            type="video/mp4"
+                          />
+                          Your browser does not support the video tag.
+                        </video>
+                      </Fragment>
                     )}
                   </Fragment>
                 ))}
