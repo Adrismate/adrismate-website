@@ -39,7 +39,7 @@ phases:
           In the meantime, the sketching process started taking place into creating different layouts for the various pages and sections of the book. Trying different page sizes, comparing them with other similar pocketbooks size, and printing them for a better perspective on how they will really look on hands.
         assets:
           - type: image
-            file_name: 'do-sketch-process-1.png'
+            file_name: 'ado-sketch-process-1.png'
             class: 'project__asset-small'
             alt: ' Layout for poesy content'
           - type: image
@@ -135,7 +135,7 @@ phases:
             alt: 'Working on the river and margins for the text'
       - assets:
           - type: video
-            file_name: 'https://adrismate-website.s3.eu-north-1.amazonaws.com/videos/ado-page-numbers.mp4'
+            file_name: 'https://d2n55ghgu89ye8.cloudfront.net/videos/ado-page-numbers.mp4'
             class: 'project__asset-large'
             alt: 'Page numbers'
       - text: |
@@ -167,7 +167,7 @@ phases:
             class: project__asset-large
             alt: 'something here'
           - type: video
-            file_name: 'https://adrismate-website.s3.eu-north-1.amazonaws.com/videos/ado-video-walkthrough.mp4'
+            file_name: 'https://d2n55ghgu89ye8.cloudfront.net/videos/ado-video-walkthrough.mp4'
             class: project__asset-large
             alt: 'Video walkthrough'
 used_tools:

@@ -127,7 +127,7 @@ phases:
           Thanks to this project, I got more involved in components, and code-like features with the design tool Figma as well as more ways for setting CSS components in a quicker and more scalable way.
         assets:
           - type: video
-            file_name: 'https://adrismate-website.s3.eu-north-1.amazonaws.com/videos/video-showcase.mp4'
+            file_name: 'https://d2n55ghgu89ye8.cloudfront.net/videos/video-showcase.mp4'
             alt: showcase of the real prototype
             class: project__asset-regular
           - type: image
