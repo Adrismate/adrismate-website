@@ -135,7 +135,7 @@ phases:
             alt: 'Working on the river and margins for the text'
       - assets:
           - type: video
-            file_name: 'https://d2n55ghgu89ye8.cloudfront.net/videos/ado-page-numbers.mp4'
+            file_name: 'https://adrismate.com/ado-page-numbers.mp4'
             class: 'project__asset-large'
             alt: 'Page numbers'
       - text: |
@@ -167,7 +167,7 @@ phases:
             class: project__asset-large
             alt: 'something here'
           - type: video
-            file_name: 'https://d2n55ghgu89ye8.cloudfront.net/videos/ado-video-walkthrough.mp4'
+            file_name: 'https://adrismate.com/ado-video-walkthrough.mp4'
             class: project__asset-large
             alt: 'Video walkthrough'
 used_tools:
@@ -178,6 +178,6 @@ used_tools:
   - Figma
 ---
 
-I hoped you enjoyed the process behind this book design project as same as I did working on it. Here is [Chema’s website](https://www.lohmannarciso.com) where you could purchase the book or take a look at his crisp photography.
+I hoped you enjoyed the process behind this book design project as same as I did working on it.
 
 Whether you feel like publishing your new book or just looking for a talented multi-disciplinary designer, don’t hesitate to contact me. You will find my contact info all across the website or by pressing in the below large text/button.

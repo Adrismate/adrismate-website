@@ -9,26 +9,26 @@ import contactInfo from "../data/contactInfo";
 import { getProjectAssets, getImage } from "../utils/assets";
 
 interface Frontmatter {
-  slug: string;
-  project_title: string;
-  date: string;
-  tags: string[];
-  client?: string;
-  thumbnail: string;
-  phases: {
-    title: string;
-    sections: {
-      text?: string;
-      assets?: {
-        type: "image" | "video";
-        file_name: string;
-        class?: string;
-        alt?: string;
-      }[];
-    }[];
-  }[];
-  used_tools?: string[];
-  introduction: string;
+	slug: string;
+	project_title: string;
+	date: string;
+	tags: string[];
+	client?: string;
+	thumbnail: string;
+	phases: {
+		title: string;
+		sections: {
+			text?: string;
+			assets?: {
+				type: "image" | "video";
+				file_name: string;
+				class?: string;
+				alt?: string;
+			}[];
+		}[];
+	}[];
+	used_tools?: string[];
+	introduction: string;
 }
 
 const { frontmatter } = Astro.props as { frontmatter: Frontmatter };
@@ -43,126 +43,105 @@ console.log(`Looking for thumbnail: ${frontmatter.thumbnail} → Found: ${assetM
 
 <HeadData title={"Adrismate | " + frontmatter.project_title} />
 <body>
-  <Header />
-  <Nav />
-  <div class="project">
-    <div class="project__blurry-shape-wrapper">
-      <div class="project__blurry-shape"></div>
-    </div>
-    <a class="project__back-btn" href="/">
-      <div class="project__back-btn-icon"></div>
-      <div class="project__back-btn-text">Projects</div>
-    </a>
-    <section class="project__top-section">
-      <div class="project__cover-wrapper" style="overflow: hidden;">
-        <ResponsivePicture src={assetMap[frontmatter.thumbnail]} alt={frontmatter.slug} class="project__cover" />
-      </div>
-      <div class="project__intro-section">
-        <h2 class="project__title">{frontmatter.project_title}</h2>
-        <div class="project__metadata">
-          <p class="project__metadata-text">
-            {
-              frontmatter.tags
-                .map((tag: string) => tag.replaceAll("-", " "))
-                .sort()
-                .join(" — ")
-            }
-          </p>
-          <p class="project__metadata-text">{new Date(frontmatter.date).toLocaleDateString("es").replaceAll("/", "-")}</p>
-          {frontmatter.client && <p class="project__metadata-text">{frontmatter.client}</p>}
-        </div>
-        <div class="project__introduction-text" set:html={marked.parse(frontmatter.introduction)} />
-      </div>
-    </section>
-    <section class="project__content-section">
-      {
-        frontmatter.phases.map((phase) => (
-          <div class="project__phase" data-phase-title={phase.title + " phase"}>
-            {phase.sections.map((section) => (
-              <div class="project__phase-section">
-                {section.text && <div class="project__phase-section-text" set:html={marked.parse(section.text)} />}
-                <div class="project__phase-section-assets">
-                  {section?.assets?.map((asset) => (
-                    <Fragment>
-                      {asset?.type === "image" && (
-                        <div class={asset.class}>
-                          <ResponsivePicture src={assetMap[asset.file_name]} alt={asset.alt} class={asset.class} />
-                        </div>
-                      )}
-                      {asset?.type === "video" && (
-                        <Fragment>
-                          {console.log(`Attempting to load video: ${asset.file_name} for ${frontmatter.slug}`)}
-                          <div class={asset.class}>
-                            {asset.file_name.startsWith("http") ? (
-                              <video
-                                id={`video-${asset.file_name.replace(/[:/]/g, "-")}`} // Unique ID for retry
-                                muted
-                                autoplay
-                                loop
-                                playsinline
-                                preload="auto"
-                                onError={(e) => {
-                                  console.error(`Video load error for ${asset.file_name}:`, e);
-                                  const video = e.target as HTMLVideoElement;
-                                  setTimeout(() => {
-                                    video.src = video.src; // Retry after 2 seconds
-                                    console.log(`Retrying video: ${video.src}`);
-                                  }, 2000);
-                                }}
-                              >
-                                <source src={asset.file_name} type="video/mp4" />
-                                Your browser does not support the video tag.
-                              </video>
-                            ) : (
-                              <video
-                                id={`video-${asset.file_name.replace(/[:/]/g, "-")}`}
-                                muted
-                                autoplay
-                                loop
-                                playsinline
-                                preload="auto"
-                                onError={(e) => {
-                                  console.error(`Local video load error for ${asset.file_name}:`, e);
-                                }}
-                              >
-                                <source src={assetMap[asset.file_name.split("?")[0]]?.src ?? ""} type="video/mp4" />
-                                Your browser does not support the video tag.
-                              </video>
-                            )}
-                            {!asset.file_name.startsWith("http") && !assetMap[asset.file_name.split("?")[0]] && (
-                              <p>Video not found: {asset.file_name} for {frontmatter.slug}</p>
-                            )}
-                          </div>
-                        </Fragment>
-                      )}
-                    </Fragment>
-                  ))}
-                </div>
-              </div>
-            ))}
-            <span class="project__sticky-element-hidder" />
-          </div>
-        ))
-      }
-    </section>
-    <section class="project__notes-section">
-      <slot />
-    </section>
-    <section class="project__used-tools">
-      {frontmatter.used_tools && (
-        <Fragment>
-          <h3 class="project__used-tools-title">Tools I used</h3>
-          {frontmatter.used_tools.map((tool: string) => (
-            <img src={`/icons/icons--software-${tool.replaceAll(" ", "").toLowerCase()}.png`} alt={tool.toUpperCase()} />
-          ))}
-        </Fragment>
-      )}
-    </section>
-    <section class="project__approaching">
-      <a class="project__approaching-text-link" href={`mailto:${contactInfo.email}`}>Get in touch</a>
-      <button class="project__approaching-btn btn-special"><a href={`mailto:${contactInfo.email}`}>Get in touch</a></button>
-    </section>
-  </div>
+	<Header />
+	<Nav />
+	<div class="project">
+		<div class="project__blurry-shape-wrapper">
+			<div class="project__blurry-shape"></div>
+		</div>
+		<a class="project__back-btn" href="/">
+			<div class="project__back-btn-icon"></div>
+			<div class="project__back-btn-text">Projects</div>
+		</a>
+		<section class="project__top-section">
+			<div class="project__cover-wrapper" style="overflow: hidden;">
+				<ResponsivePicture src={assetMap[frontmatter.thumbnail]} alt={frontmatter.slug} class="project__cover" />
+			</div>
+			<div class="project__intro-section">
+				<h2 class="project__title">{frontmatter.project_title}</h2>
+				<div class="project__metadata">
+					<p class="project__metadata-text">
+						{
+							frontmatter.tags
+								.map((tag: string) => tag.replaceAll("-", " "))
+								.sort()
+								.join(" — ")
+						}
+					</p>
+					<p class="project__metadata-text">{new Date(frontmatter.date).toLocaleDateString("es").replaceAll("/", "-")}</p>
+					{frontmatter.client && <p class="project__metadata-text">{frontmatter.client}</p>}
+				</div>
+				<div class="project__introduction-text" set:html={marked.parse(frontmatter.introduction)} />
+			</div>
+		</section>
+		<section class="project__content-section">
+			{
+				frontmatter.phases.map((phase) => (
+					<div class="project__phase" data-phase-title={phase.title + " phase"}>
+						{phase.sections.map((section) => (
+							<div class="project__phase-section">
+								{section.text && <div class="project__phase-section-text" set:html={marked.parse(section.text)} />}
+								<div class="project__phase-section-assets">
+									{section?.assets?.map((asset) => (
+										<Fragment>
+											{asset?.type === "image" && (
+												<div class={asset.class}>
+													<ResponsivePicture src={assetMap[asset.file_name]} alt={asset.alt} class={asset.class} />
+												</div>
+											)}
+											{asset?.type === "video" && (
+												<Fragment>
+													{console.log(`Attempting to load video: ${asset.file_name} for ${frontmatter.slug}`)}
+													<div class={asset.class}>
+														{asset.file_name.startsWith("http") ? (
+															<video muted autoplay loop playsinline preload="auto">
+																<source src={asset.file_name} type="video/mp4" />
+																Your browser does not support the video tag.
+															</video>
+														) : (
+															<video muted autoplay loop playsinline preload="auto">
+																<source src={assetMap[asset.file_name.split("?")[0]]?.src ?? ""} type="video/mp4" />
+																Your browser does not support the video tag.
+															</video>
+														)}
+														{!asset.file_name.startsWith("http") && !assetMap[asset.file_name.split("?")[0]] && (
+															<p>
+																Video not found: {asset.file_name} for {frontmatter.slug}
+															</p>
+														)}
+													</div>
+												</Fragment>
+											)}
+										</Fragment>
+									))}
+								</div>
+							</div>
+						))}
+						<span class="project__sticky-element-hidder" />
+					</div>
+				))
+			}
+		</section>
+		<section class="project__notes-section">
+			<slot />
+		</section>
+		<section class="project__used-tools">
+			{
+				frontmatter.used_tools && (
+					<Fragment>
+						<h3 class="project__used-tools-title">Tools I used</h3>
+						{frontmatter.used_tools.map((tool: string) => (
+							<img src={`/icons/icons--software-${tool.replaceAll(" ", "").toLowerCase()}.png`} alt={tool.toUpperCase()} />
+						))}
+					</Fragment>
+				)
+			}
+		</section>
+		<section class="project__approaching">
+			<a class="project__approaching-text-link" href={`mailto:${contactInfo.email}`}>Get in touch</a>
+			<button class="project__approaching-btn btn-special"><a href={`mailto:${contactInfo.email}`}>Get in touch</a></button>
+		</section>
+	</div>
 </body>
 <Footer />
 <div class="dialog__landscape-mode">Please,<br />rotate your device</div>
