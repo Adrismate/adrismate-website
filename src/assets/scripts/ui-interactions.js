@@ -294,5 +294,13 @@ const init = () => {
 init();
 
 // Run on every client-side navigation
-document.addEventListener('astro:after-swap', init);
+document.addEventListener('astro:after-swap', () => {
+  init();
+
+  // Añade esto para reinicializar los vídeos manualmente
+  document.querySelectorAll('video[autoplay]').forEach((v) => {
+    v.load(); // fuerza recarga
+    v.play().catch(() => {}); // intenta reproducir de nuevo
+  });
+});
 

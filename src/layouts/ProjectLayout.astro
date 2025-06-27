@@ -91,16 +91,15 @@ console.log(`Looking for thumbnail: ${frontmatter.thumbnail} → Found: ${assetM
 											)}
 											{asset?.type === "video" && (
 												<Fragment>
-													{console.log(`Attempting to load video: ${asset.file_name} for ${frontmatter.slug}`)}
-													<div class={asset.class} transition:persist>
+													<div class={asset.class}>
 														{asset.file_name.startsWith("http") ? (
-															<video muted autoplay loop playsinline preload="auto">
-																<source src={asset.file_name} type="video/mp4" />
+															<video muted autoplay loop playsinline>
+																<source src={asset.file_name} type="video/mp4"/>
 																Your browser does not support the video tag.
 															</video>
 														) : (
-															<video muted autoplay loop playsinline preload="auto">
-																<source src={assetMap[asset.file_name.split("?")[0]]?.src ?? ""} type="video/mp4" />
+															<video muted autoplay loop playsinline>
+																<source src={assetMap[asset.file_name.split("?")[0]]?.src ?? ""} type="video/mp4"/>
 																Your browser does not support the video tag.
 															</video>
 														)}
