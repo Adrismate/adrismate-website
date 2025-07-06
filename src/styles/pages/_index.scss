@@ -221,12 +221,12 @@
     position: sticky;
     width: 35px;
     height: 35px;
-    background: var(--color__neutrals-midnight--500);
-    border-radius: 50px;
+    border-radius: 50%;
     top: 50%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
+    background: var(--color__neutrals-midnight--500);
 
     // Inside
     @include fonts.label-style(desktop);
