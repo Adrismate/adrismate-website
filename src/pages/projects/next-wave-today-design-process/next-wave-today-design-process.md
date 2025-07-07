@@ -25,6 +25,10 @@ phases:
             file_name: "nwt-values.png"
             class: "project__asset-regular--content-fit"
             alt: "Circular diagram of brand values with 'HUMANO' at the center"
+          - type: video
+            file_name: "https://adrismate.com/NWT_logo%20animation_HD.mp4"
+            class: "project__asset-large"
+            alt: "Next Wave Today logo reveal animation"
       - text: |
           To kick off the project, we conducted several brand strategy and brainstorming sessions. Since the client had already provided the brand name, we worked from a base that included a concept map, a list of keywords, three user personas, and, in that order, the brand’s personality and values.
 
