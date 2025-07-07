@@ -60,14 +60,7 @@ console.log(`Looking for thumbnail: ${frontmatter.thumbnail} → Found: ${assetM
 			<div class="project__intro-section">
 				<h2 class="project__title">{frontmatter.project_title}</h2>
 				<div class="project__metadata">
-					<p class="project__metadata-text">
-						{
-							frontmatter.tags
-								.map((tag: string) => tag.replaceAll("-", " "))
-								.sort()
-								.join(" — ")
-						}
-					</p>
+					<p class="project__metadata-text">{frontmatter.tags.map((tag: string) => tag.replaceAll("-", " ")).sort().join(" — ")}</p>
 					<p class="project__metadata-text">{new Date(frontmatter.date).toLocaleDateString("es").replaceAll("/", "-")}</p>
 					{frontmatter.client && <p class="project__metadata-text">{frontmatter.client}</p>}
 				</div>
@@ -86,7 +79,7 @@ console.log(`Looking for thumbnail: ${frontmatter.thumbnail} → Found: ${assetM
 										<Fragment>
 											{asset?.type === "image" && (
 												<div class={asset.class}>
-													<ResponsivePicture src={assetMap[asset.file_name]} alt={asset.alt} class={asset.class} />
+										<ResponsivePicture src={assetMap[asset.file_name] ?? ""} alt={asset.alt ?? ""} class={asset.class ?? ""} />
 												</div>
 											)}
 											{asset?.type === "video" && (
@@ -94,12 +87,12 @@ console.log(`Looking for thumbnail: ${frontmatter.thumbnail} → Found: ${assetM
 													<div class={asset.class}>
 														{asset.file_name.startsWith("http") ? (
 															<video muted autoplay loop playsinline preload="auto">
-																<source src={asset.file_name} type="video/mp4"/>
+																<source src={asset.file_name} type="video/mp4" />
 																Your browser does not support the video tag.
 															</video>
 														) : (
 															<video muted autoplay loop playsinline preload="auto">
-																<source src={assetMap[asset.file_name.split("?")[0]]?.src ?? ""} type="video/mp4"/>
+																<source src={assetMap[asset.file_name.split("?")[0]]?.src ?? ""} type="video/mp4" />
 																Your browser does not support the video tag.
 															</video>
 														)}
