@@ -1,27 +1,27 @@
 ---
-import { Picture } from 'astro:assets';
-import { getImage } from '../utils/imageUtils';
+import { Picture } from "astro:assets";
+import { getImage } from "../utils/imageUtils";
 
-const { src, alt, widths = [480, 720, 1000], sizes, formats = ['avif', 'webp'], enable = true } = Astro.props;
+// Improved defaults for high-DPI and large screens
+const {
+	src,
+	alt,
+	widths = [480, 720, 960, 1440, 2000, 2880, 3840],
+	sizes = "(max-width: 480px) 100vw, (max-width: 720px) 100vw, (max-width: 960px) 100vw, (max-width: 1440px) 100vw, (max-width: 2000px) 100vw, 100vw",
+	formats = ["avif", "webp"],
+	enable = true,
+} = Astro.props;
 
 if (!enable) return null; // Toggle via frontmatter: e.g., enable: false
 
 const image = await getImage(src);
 if (!image) return <p>Image not found: {src}</p>;
-
 ---
-<Picture
-  class="optimized-image"
-  src={image}
-  alt={alt}
-  widths={widths}
-  sizes={sizes || '(max-width: 480px) 100vw, (max-width: 720px) 100vw, 1000px'}
-  formats={formats}
-  loading="lazy"
-/>
+
+<Picture class="optimized-image" src={image} alt={alt} widths={widths} sizes={sizes} formats={formats} loading="lazy" />
 <style>
-  .optimized-image {
-    max-width: 100%;
-    height: auto;
-  }
+	.optimized-image {
+		max-width: 100%;
+		height: auto;
+	}
 </style>
