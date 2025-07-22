@@ -26,7 +26,7 @@ phases:
             class: "project__asset-regular--content-fit"
             alt: "Circular diagram of brand values with 'HUMANO' at the center"
           - type: video
-            file_name: "https://adrismate.com/NWT_logo%20animation_HD.mp4"
+            file_name: "https://storage.adrismate.com/NWT_logo%20animation_HD.mp4"
             class: "project__asset-large"
             alt: "Next Wave Today logo reveal animation"
       - text: |
@@ -43,16 +43,16 @@ phases:
             class: "project__asset-regular"
             alt: "SWOT analysis chart"
           - type: image
-            file_name: "nwt-visual-direction-1.jpg"
+            file_name: "nwt-visual-direction-1.png"
             class: "project__asset-regular--content-fit"
             alt: "First visual direction concept"
           - type: image
-            file_name: "nwt-visual-direction-2.jpg"
+            file_name: "nwt-visual-direction-2.png"
             class: "project__asset-regular--content-fit"
             alt: "Second visual direction concept"
       - assets:
           - type: image
-            file_name: "nwt-visual-direction-3.jpg"
+            file_name: "nwt-visual-direction-3.png"
             class: "project__asset-large--content-fit"
             alt: "Third and selected visual direction concept: Empowering Tomorrow’s Minds"
 
@@ -70,7 +70,7 @@ phases:
           Next, you can find the remaining steps, including how the logotype appears in its various versions and how it’s relevant to both the real and digital worlds.
         assets:
           - type: video
-            file_name: "https://adrismate.com/nwt-sketches%20frames%20video.m4v"
+            file_name: "https://storage.adrismate.com/nwt-sketches%20frames%20video.m4v"
             class: "project__asset-small"
             alt: "Video showing sketches and frames for Next Wave Today branding process"
           - type: image
@@ -83,11 +83,11 @@ phases:
             alt: "Selfie during the design process for Next Wave Today"
       - assets:
           - type: video
-            file_name: "https://adrismate.com/nwt-design-process.mp4"
+            file_name: "https://storage.adrismate.com/nwt-design-process.mp4"
             class: "project__asset-large"
             alt: "Video showing the design process for Next Wave Today logotype"
           - type: image
-            file_name: "nwt-logotype-presentation.jpg"
+            file_name: "nwt-logotype-presentation.png"
             class: "project__asset-large"
             alt: "Final logotype presentation"
           - type: image
@@ -138,7 +138,7 @@ phases:
             class: "project__asset-large"
             alt: "Social media kit for Next Wave Today"
           - type: video
-            file_name: "https://adrismate.com/nwt-instagram%20stories.mp4"
+            file_name: "https://storage.adrismate.com/nwt-instagram%20stories.mp4"
             class: "project__asset-large"
             alt: "Instagram stories video for Next Wave Today branding"
 

@@ -1,10 +1,10 @@
 ---
 layout: /src/layouts/ProjectLayout.astro
-slug: 'casino-dinner-experience-design'
-project_title: 'Case study: Elevating dinner experience to the next level'
+slug: "casino-dinner-experience-design"
+project_title: "Case study: Elevating dinner experience to the next level"
 date: 2021-10-01
 featured: false
-thumbnail: 'cover-frame.png'
+thumbnail: "cover-frame.png"
 tags:
   - UX UI Design
 client: null
@@ -20,11 +20,11 @@ phases:
           Deeper, I did a research of direct and indirect competence for analyzing pros and cons of both no matter its sector. The benefit of doing that is that you don't get closed to the same sector and instead, you have a wider range of what others are doing in different sectors than yours.
         assets:
           - type: image
-            file_name: 'UX-phase-1.png'
+            file_name: "UX-phase-1.png"
             alt: user-journey
             class: project__asset-small
           - type: image
-            file_name: 'UX-phase-2.png'
+            file_name: "UX-phase-2.png"
             alt: user-flow
             class: project__asset-small
       - text: |
@@ -45,18 +45,18 @@ phases:
           In first instance, creating the one of the screens with low fidelity in a large piece of paper, really helped me to understand the size that its button should have.
         assets:
           - type: image
-            file_name: 'inital-sketches-1.jpg'
+            file_name: "inital-sketches-1.jpg"
             alt: user-journey
             class: project__asset-regular
           - type: image
-            file_name: 'inital-sketches-2.jpg'
+            file_name: "inital-sketches-2.jpg"
             alt: user-flow
             class: project__asset-regular
   - title: Design
     sections:
       - assets:
           - type: image
-            file_name: 'real-size-wireframe.jpg'
+            file_name: "real-size-wireframe.jpg"
             alt: user-journey
             class: project__asset-large
       - text: |
@@ -67,80 +67,80 @@ phases:
           Screens are light sources, plus in indoor dark environments, if you want to highlight some content, it’s easier to do it on dark backgrounds providing the user easier-to-find action buttons.
         assets:
           - type: image
-            file_name: 'design-system-01.png'
+            file_name: "design-system-01.png"
             alt: user-journey
             class: project__asset-small
           - type: image
-            file_name: 'design-system-02.png'
+            file_name: "design-system-02.png"
             alt: user-journey
             class: project__asset-small
           - type: image
-            file_name: 'design-system-03.png'
+            file_name: "design-system-03.png"
             alt: user-journey
             class: project__asset-small
           - type: image
-            file_name: 'design-system-04.png'
+            file_name: "design-system-04.png"
             alt: user-journey
             class: project__asset-small
       - text: |
           Once I got a minimum solid interface, I decided to, before getting started on coding, try the UI scale and the accessibility of all the elements on a large screen, a real interactive table.
         assets:
           - type: image
-            file_name: 'real-model-test.jpg'
+            file_name: "real-model-test.jpg"
             alt: user-journey
             class: project__asset-regular
           - type: image
-            file_name: 'real-model-test-2.jpg'
+            file_name: "real-model-test-2.jpg"
             alt: user-journey
             class: project__asset-regular
   - title: Execution
     sections:
       - assets:
           - type: image
-            file_name: 'final-design-in-real-use-00.png'
+            file_name: "final-design-in-real-use-00.png"
             alt: user-journey
             class: project__asset-large
       - text: |
           With a minimal but solid Design System, it was easier to hand-off all the assets for the development phase. While it just required a basic functional prototype, I coded the main screen for selecting meals which is the same for both drinks and desserts so I put more effort on the UX/UI phases.
         assets:
           - type: image
-            file_name: 'final-design-in-real-use-06.png'
+            file_name: "final-design-in-real-use-06.png"
             alt: user-journey
             class: project__asset-small
           - type: image
-            file_name: 'final-design-in-real-use-01.png'
+            file_name: "final-design-in-real-use-01.png"
             alt: user-journey
             class: project__asset-small
       - text: |
           I want to mention how easy and eye-catching was to create the neumorphism effect with a box-shadow containing two shadows, each positioned opposite from the other, creating that pop or deep effect.
         assets:
           - type: image
-            file_name: 'final-design-in-real-use-05.png'
+            file_name: "final-design-in-real-use-05.png"
             alt: user-journey
             class: project__asset-regular
       - assets:
           - type: image
-            file_name: 'final-design-in-real-use-04.png'
+            file_name: "final-design-in-real-use-04.png"
             alt: user-journey
             class: project__asset-large
       - text: |
           Thanks to this project, I got more involved in components, and code-like features with the design tool Figma as well as more ways for setting CSS components in a quicker and more scalable way.
         assets:
           - type: video
-            file_name: 'https://adrismate.com/ecde-video-showcase_1_stab_low.mp4'
+            file_name: "https://storage.adrismate.com/ecde-video-showcase_1_stab_low.mp4"
             alt: showcase of the real prototype
             class: project__asset-regular
           - type: image
-            file_name: 'final-design-in-real-use-03.png'
+            file_name: "final-design-in-real-use-03.png"
             alt: user-journey
             class: project__asset-small
           - type: image
-            file_name: 'final-design-in-real-use-02.png'
+            file_name: "final-design-in-real-use-02.png"
             alt: user-journey
             class: project__asset-small
       - assets:
           - type: image
-            file_name: 'cover-frame.png'
+            file_name: "cover-frame.png"
             alt: user-journey
             class: project__asset-large
 
