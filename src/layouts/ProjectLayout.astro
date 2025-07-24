@@ -35,10 +35,6 @@ const { frontmatter } = Astro.props as { frontmatter: Frontmatter };
 
 // Get project assets
 const assetMap = await getProjectAssets(frontmatter.slug);
-
-// Debug asset map and thumbnail lookup
-console.log(`Asset map for project ${frontmatter.slug}:`, Object.keys(assetMap));
-console.log(`Looking for thumbnail: ${frontmatter.thumbnail} → Found: ${assetMap[frontmatter.thumbnail] ? "Yes" : "No"}`);
 ---
 
 <HeadData title={"Adrismate | " + frontmatter.project_title} />
