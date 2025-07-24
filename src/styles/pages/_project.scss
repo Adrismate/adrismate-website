@@ -396,11 +396,9 @@ $left-column-width: 40%;
 		width: 100%;
 		height: auto;
 		z-index: 1;
-
 		object-position: center;
-
 		margin: abstracts.$spacer-m 0;
-
+		object-fit: cover;
 		@include abstracts.breakpoint(tablet) {
 			height: 90vh;
 		}
