@@ -9,7 +9,6 @@ interface Props {
 	widths?: number[];
 	sizes?: string;
 	formats?: string[];
-	media?: { [key: string]: string }; // New prop for media queries
 }
 
 // Default widths include very large sizes for high-DPI and large displays
@@ -18,36 +17,13 @@ const defaultWidths = [480, 720, 960, 1440, 2000, 2880, 3840];
 const defaultSizes = "100vw";
 const defaultFormats = ["avif", "webp"];
 
-const { src, alt, class: className, widths = defaultWidths, sizes = defaultSizes, formats = defaultFormats, media } = Astro.props;
-
-// Helper function to safely generate srcset
-const generateSrcSet = (src: string, format: string, widths: number[]) => {
-	return widths.map((width) => `${src.replace(/\.[^/.]+$/, `.${format}`)} ${width}w`).join(", ");
-};
+const { src, alt, class: className, widths = defaultWidths, sizes = defaultSizes, formats = defaultFormats } = Astro.props;
 ---
 
 {
 	src ? (
-		<picture>
-			{/* Add media-specific sources */}
-			{media && Object.entries(media).map(([mediaQuery, srcSet]) => <source media={mediaQuery} srcset={srcSet} sizes={sizes} />)}
-
-			{/* Default formats */}
-			{formats.map((format) => (
-				<source srcset={generateSrcSet(src.src, format, widths)} type={`image/${format}`} sizes={sizes} />
-			))}
-
-			{/* Fallback image */}
-			<img
-				src={src.src}
-				srcset={widths.map((width) => `${src.src} ${width}w`).join(", ")}
-				alt={alt}
-				class={className}
-				loading="lazy"
-				decoding="async"
-			/>
-		</picture>
+		<Picture src={src} alt={alt} class={className} widths={widths} sizes={sizes} formats={formats} loading="lazy" decoding="async" />
 	) : (
-		<p>Image not found: {alt || "No description available"}</p>
+		<p>Image not found: {alt}</p>
 	)
 }
