@@ -3,27 +3,43 @@ import { Picture } from "astro:assets";
 import type { ImageMetadata } from "astro";
 
 interface Props {
-	src: ImageMetadata | null;
-	alt: string;
-	class?: string;
-	widths?: number[];
-	sizes?: string;
-	formats?: string[];
+  src: ImageMetadata | null;
+  alt: string;
+  class?: string;
+  widths?: number[];
+  sizes?: string;
+  formats?: string[];
 }
 
-// Default widths include very large sizes for high-DPI and large displays
-const defaultWidths = [480, 720, 960, 1440, 2000, 2880, 3840];
-// Default sizes: 100vw for full-width, override as needed
-const defaultSizes = "100vw";
-const defaultFormats = ["avif", "webp"];
+const defaultWidths = [480, 720, 960, 1440, 1920, 2000, 2400, 3840];
+const defaultFormats = ["webp", "jpg"];
+// Default sizes basado en el diseño dinámico
+const defaultSizes = "(max-width: 720px) 100vw, (max-width: 992px) 100vw, 50vw";
 
 const { src, alt, class: className, widths = defaultWidths, sizes = defaultSizes, formats = defaultFormats } = Astro.props;
+
+// Ajustar sizes según la clase de la imagen
+const computedSizes = className?.includes("asset-large") || className?.includes("asset-regular")
+  ? "(max-width: 720px) 100vw, 100vw"
+  : className?.includes("asset-small")
+  ? "(max-width: 720px) 100vw, (max-width: 992px) 100vw, 50vw"
+  : sizes;
 ---
 
 {
-	src ? (
-		<Picture src={src} alt={alt} class={className} widths={widths} sizes={sizes} formats={formats} loading="lazy" decoding="async" />
-	) : (
-		<p>Image not found: {alt}</p>
-	)
+  src ? (
+    <Picture
+      src={src}
+      alt={alt}
+      class={className}
+      widths={widths}
+      sizes={computedSizes}
+      formats={formats}
+      quality="high"
+      loading="lazy"
+      decoding="async"
+    />
+  ) : (
+    <p>Image {alt} not found</p>
+  )
 }

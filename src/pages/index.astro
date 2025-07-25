@@ -32,6 +32,7 @@ const projects = Object.values(matches).sort((a: any, b: any) => new Date(b.fron
 								src={getImage(project.frontmatter.thumbnail, project.frontmatter.slug)}
 								alt={project.frontmatter.slug}
 								class="projects__thumbnail"
+								sizes="(min-width: 1024px) 33vw, 100vw"
 							/>
 						</div>
 						<p class="projects__tags">
