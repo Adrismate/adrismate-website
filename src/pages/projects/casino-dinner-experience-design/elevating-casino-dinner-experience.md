@@ -21,12 +21,14 @@ phases:
         assets:
           - type: image
             file_name: "UX-phase-1.png"
-            alt: user-journey
             class: project__asset-small
+            first_load: true
+            alt: user-journey
           - type: image
             file_name: "UX-phase-2.png"
-            alt: user-flow
             class: project__asset-small
+            first_load: true
+            alt: user-flow
       - text: |
           Bearing in mind that the main goal was to make the customer feel comfortable and enjoy a unique experience, the customer’s journey I set was the following:
 

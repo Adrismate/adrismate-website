@@ -20,10 +20,12 @@ phases:
           - type: image
             file_name: "nwt-brand_mission_images.png"
             class: "project__asset-regular--content-fit"
+            first_load: true
             alt: "Brand mission reference images showing arid landscapes, waves, and natural forms"
           - type: image
             file_name: "nwt-values.png"
             class: "project__asset-regular--content-fit"
+            first_load: true
             alt: "Circular diagram of brand values with 'HUMANO' at the center"
           - type: video
             file_name: "https://storage.adrismate.com/NWT_logo%20animation_HD.mp4"

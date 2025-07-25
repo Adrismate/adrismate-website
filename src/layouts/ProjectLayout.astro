@@ -24,6 +24,7 @@ interface Frontmatter {
 				file_name: string;
 				class?: string;
 				alt?: string;
+				first_load?: boolean;
 			}[];
 		}[];
 	}[];
@@ -51,7 +52,7 @@ const assetMap = await getProjectAssets(frontmatter.slug);
 		</a>
 		<section class="project__top-section">
 			<div class="project__cover-wrapper" style="overflow: hidden;">
-				<ResponsivePicture src={assetMap[frontmatter.thumbnail]} alt={frontmatter.slug} class="project__cover" />
+				<ResponsivePicture src={assetMap[frontmatter.thumbnail]} alt={frontmatter.slug} class="project__cover" priority={true} />
 			</div>
 			<div class="project__intro-section">
 				<h2 class="project__title">{frontmatter.project_title}</h2>
@@ -82,7 +83,7 @@ const assetMap = await getProjectAssets(frontmatter.slug);
 										<Fragment>
 											{asset?.type === "image" && (
 												<div class={asset.class}>
-													<ResponsivePicture src={assetMap[asset.file_name] ?? ""} alt={asset.alt ?? ""} class={asset.class} />
+													<ResponsivePicture src={assetMap[asset.file_name] ?? ""} alt={asset.alt ?? ""} class={asset.class} priority={asset.first_load} />
 												</div>
 											)}
 											{asset?.type === "video" && (

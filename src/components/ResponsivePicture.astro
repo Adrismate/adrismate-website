@@ -9,14 +9,15 @@ interface Props {
   widths?: number[];
   sizes?: string;
   formats?: string[];
+  priority?: boolean; // Nueva prop para controlar lazy loading y fetchpriority
 }
 
 const defaultWidths = [480, 720, 960, 1440, 1920, 2000, 2400, 3840];
-const defaultFormats = ["webp", "jpg"];
+const defaultFormats = ["avif", "webp", "jpg"];
 // Default sizes basado en el diseño dinámico
 const defaultSizes = "(max-width: 720px) 100vw, (max-width: 992px) 100vw, 50vw";
 
-const { src, alt, class: className, widths = defaultWidths, sizes = defaultSizes, formats = defaultFormats } = Astro.props;
+const { src, alt, class: className, widths = defaultWidths, sizes = defaultSizes, formats = defaultFormats, priority = false } = Astro.props;
 
 // Ajustar sizes según la clase de la imagen
 const computedSizes = className?.includes("asset-large") || className?.includes("asset-regular")
@@ -36,7 +37,8 @@ const computedSizes = className?.includes("asset-large") || className?.includes(
       sizes={computedSizes}
       formats={formats}
       quality="high"
-      loading="lazy"
+      loading={priority ? "eager" : "lazy"}
+      fetchpriority={priority ? "high" : "auto"}
       decoding="async"
     />
   ) : (
