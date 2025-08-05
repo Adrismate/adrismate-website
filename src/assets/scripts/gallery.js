@@ -109,6 +109,23 @@ document.addEventListener("astro:page-load", () => {
 		});
 	}
 
+	function lockBodyScroll() {
+		// Store current scroll position
+		const scrollY = window.scrollY;
+		document.body.style.top = `-${scrollY}px`;
+		document.body.classList.add('gallery-modal-open');
+	}
+
+	function unlockBodyScroll() {
+		// Restore previous scroll position
+		const scrollY = document.body.style.top;
+		document.body.classList.remove('gallery-modal-open');
+		document.body.style.top = '';
+		if (scrollY) {
+			window.scrollTo(0, parseInt(scrollY || '0') * -1);
+		}
+	}
+
 	function showImage(index) {
 		currentIndex = index;
 		const item = images[index];
@@ -141,10 +158,16 @@ document.addEventListener("astro:page-load", () => {
 				modalVideo.muted = true;
 				modalVideo.autoplay = true;
 				modalVideo.loop = true;
+				modalVideo.playsInline = true; // Prevent fullscreen on mobile
 				modalVideo.style.maxWidth = "100%";
 				modalVideo.style.maxHeight = "100%";
 				modalVideo.style.objectFit = "contain";
 				modalVideo.src = videoSrc;
+				
+				// Prevent mobile auto-fullscreen
+				modalVideo.setAttribute('webkit-playsinline', 'true');
+				modalVideo.setAttribute('playsinline', 'true');
+				
 				modalContainer.appendChild(modalVideo);
 
 				// Cache the video element
@@ -202,6 +225,9 @@ document.addEventListener("astro:page-load", () => {
 
 		modalCounter.textContent = `${index + 1} - ${images.length}`;
 		modal.classList.add("is-open");
+		
+		// Lock body scroll when modal opens
+		lockBodyScroll();
 	}
 
 	function hideImage() {
@@ -214,6 +240,9 @@ document.addEventListener("astro:page-load", () => {
 		
 		// Resume background videos when modal closes
 		resumeBackgroundVideos();
+		
+		// Unlock body scroll when modal closes
+		unlockBodyScroll();
 	}
 
 	function showNextImage() {

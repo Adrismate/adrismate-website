@@ -127,3 +127,10 @@
 [data-gallery-item] {
 	cursor: pointer;
 }
+
+// Prevent background scroll when modal is open
+body.gallery-modal-open {
+	overflow: hidden;
+	position: fixed;
+	width: 100%;
+}
