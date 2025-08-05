@@ -166,7 +166,12 @@ document.addEventListener("astro:page-load", () => {
 				// Create new video element only if not cached
 				modalVideo = document.createElement("video");
 				modalVideo.className = "gallery-modal__video";
-				modalVideo.controls = true;
+				
+				// Hide controls on mobile devices (touch screens)
+				const isMobile = window.matchMedia("(max-width: 992px)").matches || 
+								'ontouchstart' in window;
+				modalVideo.controls = !isMobile;
+				
 				modalVideo.muted = true;
 				modalVideo.autoplay = true;
 				modalVideo.loop = true;
