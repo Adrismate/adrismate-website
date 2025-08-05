@@ -62,12 +62,31 @@ document.addEventListener("astro:page-load", () => {
 		modalImage = document.createElement("img");
 		modalImage.className = "gallery-modal__image";
 
+		// Create tap zones for mobile navigation
+		const leftTapZone = document.createElement("div");
+		leftTapZone.className = "gallery-modal__tap-zone gallery-modal__tap-zone--left";
+		leftTapZone.setAttribute("aria-label", "Previous image");
+		leftTapZone.addEventListener("click", (e) => {
+			e.stopPropagation();
+			showPrevImage();
+		});
+
+		const rightTapZone = document.createElement("div");
+		rightTapZone.className = "gallery-modal__tap-zone gallery-modal__tap-zone--right";
+		rightTapZone.setAttribute("aria-label", "Next image");
+		rightTapZone.addEventListener("click", (e) => {
+			e.stopPropagation();
+			showNextImage();
+		});
+
 		// Assemble structure
 		modalContainer.appendChild(closeBtn);
 		modalContainer.appendChild(prevBtn);
 		modalContainer.appendChild(nextBtn);
 		modalContainer.appendChild(modalCounter);
 		modalContainer.appendChild(modalImage);
+		modalContainer.appendChild(leftTapZone);
+		modalContainer.appendChild(rightTapZone);
 
 		modal.appendChild(modalContainer);
 
@@ -110,20 +129,13 @@ document.addEventListener("astro:page-load", () => {
 	}
 
 	function lockBodyScroll() {
-		// Store current scroll position
-		const scrollY = window.scrollY;
-		document.body.style.top = `-${scrollY}px`;
+		// Simple scroll lock without position manipulation
 		document.body.classList.add('gallery-modal-open');
 	}
 
 	function unlockBodyScroll() {
-		// Restore previous scroll position
-		const scrollY = document.body.style.top;
+		// Simple scroll unlock
 		document.body.classList.remove('gallery-modal-open');
-		document.body.style.top = '';
-		if (scrollY) {
-			window.scrollTo(0, parseInt(scrollY || '0') * -1);
-		}
 	}
 
 	function showImage(index) {
@@ -273,11 +285,14 @@ document.addEventListener("astro:page-load", () => {
 	// Touch gestures
 	let touchstartX = 0;
 	let touchendX = 0;
+	let touchstartY = 0;
+	let touchendY = 0;
 
 	modal.addEventListener(
 		"touchstart",
 		(e) => {
 			touchstartX = e.changedTouches[0].screenX;
+			touchstartY = e.changedTouches[0].screenY;
 		},
 		{ passive: true }
 	);
@@ -286,17 +301,24 @@ document.addEventListener("astro:page-load", () => {
 		"touchend",
 		(e) => {
 			touchendX = e.changedTouches[0].screenX;
+			touchendY = e.changedTouches[0].screenY;
 			handleGesture();
 		},
 		{ passive: true }
 	);
 
 	function handleGesture() {
-		if (touchendX < touchstartX) {
-			showNextImage();
-		}
-		if (touchendX > touchstartX) {
-			showPrevImage();
+		const deltaX = Math.abs(touchendX - touchstartX);
+		const deltaY = Math.abs(touchendY - touchstartY);
+		const minSwipeDistance = 50; // Minimum distance for a swipe
+		
+		// Only process horizontal swipes, ignore if vertical movement is dominant
+		if (deltaX > deltaY && deltaX > minSwipeDistance) {
+			if (touchendX < touchstartX) {
+				showNextImage();
+			} else if (touchendX > touchstartX) {
+				showPrevImage();
+			}
 		}
 	}
 });
