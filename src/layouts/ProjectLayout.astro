@@ -36,9 +36,19 @@ const { frontmatter } = Astro.props as { frontmatter: Frontmatter };
 
 // Get project assets
 const assetMap = await getProjectAssets(frontmatter.slug);
+
+// Get the thumbnail image URL for SEO
+const thumbnailImage = assetMap[frontmatter.thumbnail]?.src;
+const fullImageUrl = thumbnailImage ? new URL(thumbnailImage, Astro.site || 'https://adrismate-website-astro.pages.dev').href : undefined;
 ---
 
-<HeadData title={"Adrismate | " + frontmatter.project_title} />
+<HeadData 
+	title={"Adrismate | " + frontmatter.project_title} 
+	description={frontmatter.introduction}
+	image={fullImageUrl}
+	imageAlt={frontmatter.project_title + " - Project by Adrismate"}
+	type="article"
+/>
 <body>
 	<Header />
 	<Nav />

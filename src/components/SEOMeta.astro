@@ -1,0 +1,48 @@
+---
+export interface Props {
+	title: string;
+	description: string;
+	image?: string;
+	imageAlt?: string;
+	url?: string;
+	type?: 'website' | 'article';
+}
+
+const { title, description, image, imageAlt, url, type = 'website' } = Astro.props;
+
+// Get the current URL if not provided
+const currentUrl = url || Astro.url.href;
+
+// Default image if none provided
+const defaultImage = new URL('/icons/icons--adrismate.svg', Astro.site || 'https://adrismate-website-astro.pages.dev').href;
+const ogImage = image || defaultImage;
+
+// Clean description for meta tags (remove markdown and limit length)
+const cleanDescription = description
+	.replace(/\*\*(.*?)\*\*/g, '$1') // Remove bold markdown
+	.replace(/\*(.*?)\*/g, '$1')     // Remove italic markdown
+	.replace(/\n/g, ' ')             // Replace newlines with spaces
+	.trim()
+	.substring(0, 160); // Limit to 160 characters for SEO
+---
+
+<!-- Essential META Tags -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={cleanDescription} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:url" content={currentUrl} />
+<meta property="og:type" content={type} />
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={cleanDescription} />
+<meta name="twitter:image" content={ogImage} />
+
+<!-- Standard Meta Tags -->
+<meta name="description" content={cleanDescription} />
+{imageAlt && <meta property="og:image:alt" content={imageAlt} />}
+
+<!-- Additional SEO Meta Tags -->
+<meta property="og:site_name" content="Adrismate - Multidisciplinary Designer" />
+<meta name="author" content="Adrismate" />

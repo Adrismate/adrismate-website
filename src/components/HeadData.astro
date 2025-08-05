@@ -1,8 +1,18 @@
 ---
 import '../styles/main.scss';
 import { ClientRouter, fade, slide } from 'astro:transitions';
+import SEOMeta from './SEOMeta.astro';
 
-const { title } = Astro.props;
+export interface Props {
+	title: string;
+	description?: string;
+	image?: string;
+	imageAlt?: string;
+	url?: string;
+	type?: 'website' | 'article';
+}
+
+const { title, description, image, imageAlt, url, type } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -10,12 +20,13 @@ const { title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- TODO -->
-    <!-- <meta name="description" content="{% if page.introduction %}{{ page.introduction }}{% else %}{{ site.description }}{% endif %}" /> -->
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#EFEFF0" />
+
+    <!-- SEO Meta Tags -->
+    {description && <SEOMeta title={title} description={description} image={image} imageAlt={imageAlt} url={url} type={type} />}
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <title>{title}</title>
