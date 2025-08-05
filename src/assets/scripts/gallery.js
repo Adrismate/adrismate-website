@@ -89,6 +89,26 @@ document.addEventListener("astro:page-load", () => {
 		});
 	}
 
+	function pauseBackgroundVideos() {
+		// Pause all background videos on the page
+		const backgroundVideos = document.querySelectorAll("video:not(.gallery-modal__video)");
+		backgroundVideos.forEach(video => {
+			video.pause();
+		});
+	}
+
+	function resumeBackgroundVideos() {
+		// Resume all background videos on the page
+		const backgroundVideos = document.querySelectorAll("video:not(.gallery-modal__video)");
+		backgroundVideos.forEach(video => {
+			if (video.hasAttribute("autoplay")) {
+				video.play().catch(() => {
+					// Handle any play() errors silently
+				});
+			}
+		});
+	}
+
 	function showImage(index) {
 		currentIndex = index;
 		const item = images[index];
@@ -105,6 +125,9 @@ document.addEventListener("astro:page-load", () => {
 
 		// Update content based on media type
 		if (isVideo && videoSrc) {
+			// Pause all background videos when showing modal video
+			pauseBackgroundVideos();
+
 			// Replace image with video
 			modalImage.style.display = "none";
 
@@ -131,7 +154,7 @@ document.addEventListener("astro:page-load", () => {
 				modalContainer.appendChild(modalVideo);
 			}
 
-			// Hide other videos and show current one
+			// Hide other modal videos and show current one
 			videoCache.forEach((video, url) => {
 				if (url !== videoSrc) {
 					video.style.display = "none";
@@ -140,12 +163,19 @@ document.addEventListener("astro:page-load", () => {
 			});
 
 			modalVideo.style.display = "block";
+			// Ensure autoplay starts when video becomes visible
+			modalVideo.play().catch(() => {
+				// Handle any play() errors silently
+			});
 		} else {
-			// Hide all videos
+			// Hide all modal videos when showing image
 			videoCache.forEach((video) => {
 				video.style.display = "none";
 				video.pause();
 			});
+
+			// Resume background videos when showing image (not video)
+			resumeBackgroundVideos();
 
 			// Check if image is already cached
 			if (imageCache.has(src)) {
@@ -176,7 +206,14 @@ document.addEventListener("astro:page-load", () => {
 
 	function hideImage() {
 		modal.classList.remove("is-open");
-		// Keep the structure, just hide it
+		
+		// Pause all modal videos when closing
+		videoCache.forEach((video) => {
+			video.pause();
+		});
+		
+		// Resume background videos when modal closes
+		resumeBackgroundVideos();
 	}
 
 	function showNextImage() {
