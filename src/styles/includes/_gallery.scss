@@ -1,0 +1,129 @@
+/**
+ * Gallery Modal Styles for Adrismate Website
+ * Responsive image/video gallery with modern design and accessibility features
+ */
+
+@use "../base/abstracts" as *;
+
+.gallery-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0.3s ease;
+	z-index: 1000;
+
+	&.is-open {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	&__container {
+		position: relative;
+		width: 90%;
+		height: 90%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 0 60px;
+		@include breakpoint(mobile) {
+			padding: initial;
+		}
+	}
+
+	&__image,
+	&__video {
+		max-width: 100%;
+		max-height: 100%;
+		object-fit: contain;
+	}
+
+	&__close {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		background: none;
+		border: none;
+		color: white;
+		font-size: 3rem;
+		cursor: pointer;
+
+		img {
+			width: 24px;
+			height: 24px;
+			filter: brightness(0) invert(1);
+		}
+	}
+
+	&__prev,
+	&__next {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		background: none;
+		border: none;
+		color: white;
+		font-size: 3rem;
+		cursor: pointer;
+		transition: transform 0.2s ease;
+
+		&:hover {
+			transform: translateY(-50%) scale(1.1);
+		}
+
+		img {
+			width: 32px;
+			height: 32px;
+			filter: brightness(0) invert(1);
+		}
+
+		@include breakpoint(mobile) {
+			display: none;
+		}
+	}
+
+	&__prev {
+		left: 20px;
+	}
+
+	&__next {
+		right: 20px;
+		transform: translateY(-50%) scaleX(-1);
+
+		&:hover {
+			transform: translateY(-50%) scaleX(-1) scale(1.1);
+		}
+	}
+
+	&__counter {
+		position: absolute;
+		bottom: 26px;
+		left: 50%;
+		transform: translateX(-50%);
+		display: inline-flex;
+		padding: 4px 16px;
+		justify-content: center;
+		align-items: center;
+		border-radius: 16px;
+		background: rgba(38, 36, 38, 0.5);
+
+		color: var(--Neutrals-Gallery---200, #f9f9f9);
+		font-family: Manrope;
+		font-size: 18px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 164%;
+	}
+}
+
+// Add cursor pointer to gallery items
+[data-gallery-item] {
+	cursor: pointer;
+}

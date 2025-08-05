@@ -2,4 +2,5 @@
 @use "base/01-base-dir" as base;
 @use "components/01-components-dir" as components;
 @use "includes/01-includes-dir" as includes;
-@use "pages/01-pages-dir"as pages;
+@use "pages/01-pages-dir" as pages;
+@use "includes/gallery";

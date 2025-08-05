@@ -42,7 +42,7 @@ const assetMap = await getProjectAssets(frontmatter.slug);
 <body>
 	<Header />
 	<Nav />
-	<div class="project">
+	<div class="project" data-gallery>
 		<div class="project__blurry-shape-wrapper">
 			<div class="project__blurry-shape"></div>
 		</div>
@@ -51,7 +51,7 @@ const assetMap = await getProjectAssets(frontmatter.slug);
 			<div class="project__back-btn-text">Projects</div>
 		</a>
 		<section class="project__top-section">
-			<div class="project__cover-wrapper" style="overflow: hidden;">
+			<div class="project__cover-wrapper" style="overflow: hidden;" data-gallery-item data-full-res-src={assetMap[frontmatter.thumbnail]?.src}>
 				<ResponsivePicture src={assetMap[frontmatter.thumbnail]} alt={frontmatter.slug} class="project__cover" priority={true} />
 			</div>
 			<div class="project__intro-section">
@@ -82,13 +82,23 @@ const assetMap = await getProjectAssets(frontmatter.slug);
 									{section?.assets?.map((asset) => (
 										<Fragment>
 											{asset?.type === "image" && (
-												<div class={asset.class}>
-													<ResponsivePicture src={assetMap[asset.file_name] ?? ""} alt={asset.alt ?? ""} class={asset.class} priority={asset.first_load} />
+												<div class={asset.class} data-gallery-item data-full-res-src={assetMap[asset.file_name]?.src}>
+													<ResponsivePicture
+														src={assetMap[asset.file_name] ?? ""}
+														alt={asset.alt ?? ""}
+														class={asset.class}
+														priority={asset.first_load}
+													/>
 												</div>
 											)}
 											{asset?.type === "video" && (
 												<Fragment>
-													<div class={asset.class}>
+													<div
+														class={asset.class}
+														data-gallery-item
+														data-media-type="video"
+														data-video-src={asset.file_name.startsWith("http") ? asset.file_name : assetMap[asset.file_name.split("?")[0]]?.src}
+													>
 														{asset.file_name.startsWith("http") ? (
 															<video muted autoplay loop playsinline preload="auto">
 																<source src={asset.file_name} type="video/mp4" />
@@ -141,5 +151,7 @@ const assetMap = await getProjectAssets(frontmatter.slug);
 </body>
 <Footer />
 <div class="dialog__landscape-mode">Please,<br />rotate your device</div>
+
+<script src="../assets/scripts/gallery.js"></script>
 
 <!-- Designed and built with passion by Adrian M. Bandera (Adrismate) -->

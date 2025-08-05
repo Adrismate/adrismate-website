@@ -1,0 +1,236 @@
+/**
+ * Gallery Modal for Adrismate Website
+ * Handles full-screen image and video viewing with smart caching and performance optimization
+ * Features: lazy loading, touch gestures, keyboard navigation, responsive design
+ */
+
+document.addEventListener("astro:page-load", () => {
+	const gallery = document.querySelector("[data-gallery]");
+	if (!gallery) return;
+
+	const images = Array.from(gallery.querySelectorAll("[data-gallery-item]"));
+	if (images.length === 0) return;
+
+	const modal = document.createElement("div");
+	modal.classList.add("gallery-modal");
+	modal.setAttribute("role", "dialog");
+	modal.setAttribute("aria-modal", "true");
+	modal.setAttribute("aria-label", "Image gallery");
+	document.body.appendChild(modal);
+
+	let currentIndex = 0;
+	let modalContainer, modalImage, modalCounter, closeBtn, prevBtn, nextBtn;
+	const imageCache = new Map(); // Cache for loaded images
+	const videoCache = new Map(); // Cache for loaded videos
+
+	function createModalStructure() {
+		modalContainer = document.createElement("div");
+		modalContainer.className = "gallery-modal__container";
+
+		// Create close button
+		closeBtn = document.createElement("button");
+		closeBtn.className = "gallery-modal__close";
+		closeBtn.setAttribute("aria-label", "Close gallery");
+		const closeIcon = document.createElement("img");
+		closeIcon.src = "/icons/icons--cross.svg";
+		closeIcon.alt = "Close gallery";
+		closeBtn.appendChild(closeIcon);
+
+		// Create previous button
+		prevBtn = document.createElement("button");
+		prevBtn.className = "gallery-modal__prev";
+		prevBtn.setAttribute("aria-label", "Previous image");
+		const prevIcon = document.createElement("img");
+		prevIcon.src = "/icons/icons--little-arrow.svg";
+		prevIcon.alt = "Previous image";
+		prevBtn.appendChild(prevIcon);
+
+		// Create next button
+		nextBtn = document.createElement("button");
+		nextBtn.className = "gallery-modal__next";
+		nextBtn.setAttribute("aria-label", "Next image");
+		const nextIcon = document.createElement("img");
+		nextIcon.src = "/icons/icons--little-arrow.svg";
+		nextIcon.alt = "Next image";
+		nextBtn.appendChild(nextIcon);
+
+		// Create counter
+		modalCounter = document.createElement("div");
+		modalCounter.className = "gallery-modal__counter";
+
+		// Create image
+		modalImage = document.createElement("img");
+		modalImage.className = "gallery-modal__image";
+
+		// Assemble structure
+		modalContainer.appendChild(closeBtn);
+		modalContainer.appendChild(prevBtn);
+		modalContainer.appendChild(nextBtn);
+		modalContainer.appendChild(modalCounter);
+		modalContainer.appendChild(modalImage);
+
+		modal.appendChild(modalContainer);
+
+		// Add event listeners once
+		closeBtn.addEventListener("click", hideImage);
+		prevBtn.addEventListener("click", showPrevImage);
+		nextBtn.addEventListener("click", showNextImage);
+
+		modalContainer.addEventListener("click", (e) => {
+			if (e.target === modalContainer) {
+				hideImage();
+			}
+		});
+
+		modal.addEventListener("click", (e) => {
+			if (e.target === modal) {
+				hideImage();
+			}
+		});
+	}
+
+	function showImage(index) {
+		currentIndex = index;
+		const item = images[index];
+		const src = item.dataset.fullResSrc || item.querySelector("img")?.src || "";
+		const isVideo = item.dataset.mediaType === "video";
+		const videoSrc = item.dataset.videoSrc;
+
+		if (!src && !videoSrc) return;
+
+		// Create modal structure if it doesn't exist
+		if (!modalContainer) {
+			createModalStructure();
+		}
+
+		// Update content based on media type
+		if (isVideo && videoSrc) {
+			// Replace image with video
+			modalImage.style.display = "none";
+
+			// Check if video is already cached
+			let modalVideo = videoCache.get(videoSrc);
+			if (!modalVideo) {
+				// Create new video element only if not cached
+				modalVideo = document.createElement("video");
+				modalVideo.className = "gallery-modal__video";
+				modalVideo.controls = true;
+				modalVideo.muted = true;
+				modalVideo.autoplay = true;
+				modalVideo.loop = true;
+				modalVideo.style.maxWidth = "100%";
+				modalVideo.style.maxHeight = "100%";
+				modalVideo.style.objectFit = "contain";
+				modalVideo.src = videoSrc;
+				modalContainer.appendChild(modalVideo);
+
+				// Cache the video element
+				videoCache.set(videoSrc, modalVideo);
+			} else {
+				// Reuse cached video
+				modalContainer.appendChild(modalVideo);
+			}
+
+			// Hide other videos and show current one
+			videoCache.forEach((video, url) => {
+				if (url !== videoSrc) {
+					video.style.display = "none";
+					video.pause();
+				}
+			});
+
+			modalVideo.style.display = "block";
+		} else {
+			// Hide all videos
+			videoCache.forEach((video) => {
+				video.style.display = "none";
+				video.pause();
+			});
+
+			// Check if image is already cached
+			if (imageCache.has(src)) {
+				// Use cached image immediately
+				modalImage.src = src;
+				modalImage.alt = item.querySelector("img")?.alt || "";
+				modalImage.style.display = "block";
+			} else {
+				// Load image for the first time and cache it
+				const newImage = new Image();
+				newImage.onload = () => {
+					// Cache the loaded image
+					imageCache.set(src, newImage);
+
+					modalImage.src = src;
+					modalImage.alt = item.querySelector("img")?.alt || "";
+					modalImage.style.display = "block";
+				};
+
+				// Only start downloading if not cached
+				newImage.src = src;
+			}
+		}
+
+		modalCounter.textContent = `${index + 1} - ${images.length}`;
+		modal.classList.add("is-open");
+	}
+
+	function hideImage() {
+		modal.classList.remove("is-open");
+		// Keep the structure, just hide it
+	}
+
+	function showNextImage() {
+		showImage((currentIndex + 1) % images.length);
+	}
+
+	function showPrevImage() {
+		showImage((currentIndex - 1 + images.length) % images.length);
+	}
+
+	images.forEach((image, index) => {
+		image.addEventListener("click", () => {
+			showImage(index);
+		});
+	});
+
+	document.addEventListener("keydown", (e) => {
+		if (!modal.classList.contains("is-open")) return;
+		if (e.key === "ArrowRight") {
+			showNextImage();
+		} else if (e.key === "ArrowLeft") {
+			showPrevImage();
+		} else if (e.key === "Escape") {
+			hideImage();
+		}
+	});
+
+	// Touch gestures
+	let touchstartX = 0;
+	let touchendX = 0;
+
+	modal.addEventListener(
+		"touchstart",
+		(e) => {
+			touchstartX = e.changedTouches[0].screenX;
+		},
+		{ passive: true }
+	);
+
+	modal.addEventListener(
+		"touchend",
+		(e) => {
+			touchendX = e.changedTouches[0].screenX;
+			handleGesture();
+		},
+		{ passive: true }
+	);
+
+	function handleGesture() {
+		if (touchendX < touchstartX) {
+			showNextImage();
+		}
+		if (touchendX > touchstartX) {
+			showPrevImage();
+		}
+	}
+});
