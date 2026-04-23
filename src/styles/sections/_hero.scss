@@ -1,0 +1,130 @@
+@use "../base/fonts" as fonts;
+
+.hero {
+	position: relative;
+	width: 100%;
+	min-height: 100vh;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	isolation: isolate;
+
+	&__gradient {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		background: linear-gradient(
+			180deg,
+			#c7c8d4 0%,
+			#dcb79e 45%,
+			#f08a4a 75%,
+			#ee7a36 100%
+		);
+	}
+
+	&__title {
+		position: absolute;
+		z-index: 1;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		@include fonts.manrope-font;
+		font-weight: 700;
+		font-size: clamp(80px, 22vw, 420px);
+		line-height: 0.85;
+		letter-spacing: -0.04em;
+		text-transform: lowercase;
+		color: rgba(120, 80, 50, 0.35);
+		mix-blend-mode: multiply;
+		white-space: nowrap;
+		user-select: none;
+		pointer-events: none;
+	}
+
+	&__portrait {
+		position: relative;
+		z-index: 2;
+		height: 100vh;
+		width: auto;
+		max-width: none;
+		object-fit: contain;
+		object-position: bottom center;
+		pointer-events: none;
+	}
+
+	&__label {
+		position: absolute;
+		z-index: 3;
+		top: 50%;
+		@include fonts.manrope-font;
+		font-weight: 700;
+		font-size: clamp(20px, 2vw, 32px);
+		letter-spacing: -0.01em;
+		color: #5c3a10;
+
+		&--left {
+			left: 64px;
+		}
+
+		&--right {
+			right: 64px;
+		}
+	}
+
+	&__intro {
+		position: absolute;
+		z-index: 3;
+		right: 64px;
+		bottom: 180px;
+		max-width: 320px;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	&__scroll-indicator {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		border: 1px solid rgba(255, 255, 255, 0.8);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: rgba(255, 255, 255, 0.9);
+
+		svg {
+			width: 18px;
+			height: 18px;
+		}
+	}
+
+	&__description {
+		@include fonts.manrope-font;
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 1.6;
+		color: #ffffff;
+	}
+
+	@media (max-width: 720px) {
+		&__label {
+			font-size: 18px;
+
+			&--left {
+				left: 24px;
+			}
+
+			&--right {
+				right: 24px;
+			}
+		}
+
+		&__intro {
+			right: 24px;
+			left: 24px;
+			max-width: none;
+			bottom: 140px;
+		}
+	}
+}
