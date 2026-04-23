@@ -1,0 +1,13 @@
+@use "../base/fonts" as fonts;
+
+.footer {
+	padding: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&__copy {
+		@include fonts.caption-style(desktop);
+		color: var(--color__neutrals-midnight--300);
+	}
+}
