@@ -1,4 +1,4 @@
-@use 'sass:map';
+@use "sass:map";
 @use "colors" as colors;
 @use "fonts" as fonts;
 
@@ -16,6 +16,12 @@ $spacer-xl: 48px;
 $spacer-xxl: 64px;
 $spacer-xxxl: 80px;
 
+$layout-max-width: 1568px;
+$layout-desktop-gutter: 70px;
+$layout-mobile-gutter: 28px;
+$layout-columns: 12;
+$layout-column-gap: clamp(12px, 1.5vw, 28px);
+
 //scale DOWN
 @mixin breakpoint($size: laptop) {
 	@media (max-width: map.get($breakpoints, $size)) {
@@ -24,14 +30,26 @@ $spacer-xxxl: 80px;
 }
 // WRAPPER
 @mixin wrapper {
-	max-width: 2560px;
-	margin: 0 auto;
-	padding: 0 70px;
+	width: min(calc(100% - #{2 * $layout-desktop-gutter}), $layout-max-width);
+	margin-inline: auto;
 
 	@include breakpoint(mobile) {
-		margin: 0 auto;
-		padding: 0 28px;
+		width: min(calc(100% - #{2 * $layout-mobile-gutter}), $layout-max-width);
 	}
+}
+
+@mixin grid-12($columns: $layout-columns, $gap: $layout-column-gap) {
+	display: grid;
+	grid-template-columns: repeat($columns, minmax(0, 1fr));
+	column-gap: $gap;
+}
+
+.layout-wrapper {
+	@include wrapper;
+}
+
+.layout-grid-12 {
+	@include grid-12();
 }
 
 ::selection {

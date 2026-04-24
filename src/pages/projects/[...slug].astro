@@ -1,6 +1,10 @@
 ---
 import { getCollection } from "astro:content";
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/layout/Nav.astro";
+import contactInfo from "../../data/contactInfo";
 
 export async function getStaticPaths() {
 	const projects = await getCollection("projects");
@@ -12,10 +16,79 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await project.render();
+
+const thumbnailModules = import.meta.glob<{ default: ImageMetadata }>(
+	"../../content/projects/*/*.{png,jpg,jpeg,JPG,JPEG,PNG}",
+	{ eager: true }
+);
+const thumbnailPath = `../../content/projects/${project.slug}/${project.data.thumbnail}`;
+const thumbnail = thumbnailModules[thumbnailPath]?.default;
+
+const year = project.data.date.getFullYear();
+const tagLabels = project.data.tags.map((t: string) => t.replaceAll("-", " "));
 ---
 
 <BaseLayout title={project.data.project_title}>
-	<main class="project">
-		<Content />
+	<Nav />
+
+	<main class="project-page">
+		<!-- PRÓLOGO -->
+		<section class="prologue" data-prologue>
+			<div class="prologue__cover-wrapper">
+				{thumbnail ? (
+					<Image
+						src={thumbnail}
+						alt={project.data.project_title}
+						class="prologue__cover"
+						loading="eager"
+						widths={[800, 1400, 2000]}
+						sizes="100vw"
+					/>
+				) : (
+					<div class="prologue__cover-placeholder" aria-hidden="true"></div>
+				)}
+				<div class="prologue__cover-gradient" aria-hidden="true"></div>
+			</div>
+
+			<div class="prologue__content">
+				<p class="prologue__year" data-prologue-stage="2">{year}</p>
+				<h1 class="prologue__title" data-prologue-stage="1">{project.data.project_title}</h1>
+				<ul class="prologue__tags" data-prologue-stage="2">
+					{tagLabels.map((tag: string, i: number) => (
+						<li class={`prologue__tag${i === 0 ? " prologue__tag--primary" : ""}`}>{tag}</li>
+					))}
+				</ul>
+				{project.data.introduction && (
+					<p class="prologue__description" data-prologue-stage="2">
+						{project.data.introduction.replace(/\*\*/g, "").trim().slice(0, 200)}
+						{project.data.introduction.length > 200 ? "…" : ""}
+					</p>
+				)}
+			</div>
+
+			<div class="prologue__scroll-hint" data-prologue-stage="3" aria-hidden="true">
+				<span>Scroll</span>
+				<span class="prologue__scroll-hint-line"></span>
+			</div>
+		</section>
+
+		<!-- META BAR -->
+		<div class="project-meta">
+			<span class="project-meta__tags">{tagLabels.join(" — ")}</span>
+			<span class="project-meta__date">{year}</span>
+			{project.data.client && <span class="project-meta__client">{project.data.client}</span>}
+		</div>
+
+		<!-- CONTENT -->
+		<div class="project-content">
+			<Content />
+		</div>
+
+		<!-- CTA -->
+		<section class="project-contact">
+			<a href={`mailto:${contactInfo.email}`} class="project-contact__link">Get in touch</a>
+		</section>
 	</main>
 </BaseLayout>
+
+<script src="../../assets/scripts/prologue.js"></script>

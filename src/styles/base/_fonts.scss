@@ -1,53 +1,170 @@
+// ----------------------------------------
+// Rethink Sans — sans-serif body / UI font
+// ----------------------------------------
 @font-face {
-	font-family: 'Manrope';
-	src: url(/fonts/manrope/Manrope-ExtraLight.ttf);
-	font-weight: 200;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'Manrope';
-	src: url(/fonts/manrope/Manrope-Regular.ttf);
+	font-family: 'Rethink Sans';
+	src: url('/fonts/rethink sans/rethinkSans-regular.ttf') format('truetype');
 	font-weight: 400;
 	font-style: normal;
+	font-display: swap;
 }
 @font-face {
-	font-family: 'Manrope';
-	src: url(/fonts/manrope/Manrope-SemiBold.ttf);
+	font-family: 'Rethink Sans';
+	src: url('/fonts/rethink sans/rethinkSans-Italic.ttf') format('truetype');
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Rethink Sans';
+	src: url('/fonts/rethink sans/rethinkSans-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Rethink Sans';
+	src: url('/fonts/rethink sans/rethinkSans-MediumItalic.ttf') format('truetype');
+	font-weight: 500;
+	font-style: italic;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Rethink Sans';
+	src: url('/fonts/rethink sans/rethinkSans-SemiBold.ttf') format('truetype');
 	font-weight: 600;
 	font-style: normal;
+	font-display: swap;
 }
 @font-face {
-	font-family: 'Manrope';
-	src: url(/fonts/manrope/Manrope-Bold.ttf);
+	font-family: 'Rethink Sans';
+	src: url('/fonts/rethink sans/rethinkSans-SemiBoldItalic.ttf') format('truetype');
+	font-weight: 600;
+	font-style: italic;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Rethink Sans';
+	src: url('/fonts/rethink sans/rethinkSans-Bold.ttf') format('truetype');
 	font-weight: 700;
 	font-style: normal;
+	font-display: swap;
 }
 @font-face {
-	font-family: 'Cormorant';
-	src: url(/fonts/cormorant/Cormorant-Regular.ttf);
-	font-weight: 400;
-	font-style: normal;
+	font-family: 'Rethink Sans';
+	src: url('/fonts/rethink sans/rethinkSans-BoldItalic.ttf') format('truetype');
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
 }
 @font-face {
-	font-family: 'Cormorant';
-	src: url(/fonts/cormorant/Cormorant-Regular.ttf);
-	font-weight: 600;
+	font-family: 'Rethink Sans';
+	src: url('/fonts/rethink sans/rethinkSans-ExtraBold.ttf') format('truetype');
+	font-weight: 800;
 	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Rethink Sans';
+	src: url('/fonts/rethink sans/rethinkSans-ExtraBoldItalic.ttf') format('truetype');
+	font-weight: 800;
+	font-style: italic;
+	font-display: swap;
 }
 
+// ----------------------------------------
+// Sagace — serif display / heading font
+// ----------------------------------------
+@font-face {
+	font-family: 'Sagace';
+	src: url('/fonts/sagace/Sagace-Thin.otf') format('opentype');
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Sagace';
+	src: url('/fonts/sagace/Sagace-Thin—Italic.otf') format('opentype');
+	font-weight: 100;
+	font-style: italic;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Sagace';
+	src: url('/fonts/sagace/Sagace-Light.otf') format('opentype');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Sagace';
+	src: url('/fonts/sagace/Sagace-Light—Italic.otf') format('opentype');
+	font-weight: 300;
+	font-style: italic;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Sagace';
+	src: url('/fonts/sagace/Sagace-Regular.otf') format('opentype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Sagace';
+	src: url('/fonts/sagace/Sagace-Regular—Italic.otf') format('opentype');
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Sagace';
+	src: url('/fonts/sagace/Sagace-Medium.otf') format('opentype');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Sagace';
+	src: url('/fonts/sagace/Sagace-Medium—Italic.otf') format('opentype');
+	font-weight: 500;
+	font-style: italic;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Sagace';
+	src: url('/fonts/sagace/Sagace-Bold.otf') format('opentype');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Sagace';
+	src: url('/fonts/sagace/Sagace-Bold—Italic.otf') format('opentype');
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
+}
+
+// ----------------------------------------
+// Base font mixins
+// ----------------------------------------
 @mixin manrope-font {
-	font-family: 'Manrope';
+	font-family: 'Rethink Sans', sans-serif;
 	font-style: normal;
 	text-decoration: none;
 	font-weight: 400;
 }
 @mixin cormorant-font {
-	font-family: 'Cormorant';
+	font-family: 'Sagace', sans-serif;
 	font-style: normal;
 	text-decoration: none;
-	font-weight: 500;
+	font-weight: 400;
 }
 
+// ----------------------------------------
+// Typography scale mixins
+// ----------------------------------------
 @mixin display-style {
 	font-size: clamp(14px, 9vw, 134px);
 	line-height: 92%;
@@ -199,40 +316,3 @@
 		font-weight: 400;
 	}
 }
-
-// ----------------------------------------
-
-// h1 {
-//   @include h1-style(desktop);
-// }
-// h2 {
-//   @include h2-style(desktop);
-// }
-// h3 {
-//   @include h3-style(desktop);
-// }
-// h4 {
-//   @include h4-style(desktop);
-// }
-// p {
-//   @include body-style(desktop);
-// }
-
-// // Add an @media query for auto change the text properties to mobile specifications.
-// @include breakpoint(mobile) {
-//   h1 {
-//     @include h1-style(mobile);
-//   }
-//   h2 {
-//     @include h2-style(mobile);
-//   }
-//   h3 {
-//     @include h3-style(mobile);
-//   }
-//   h4 {
-//     @include h4-style(mobile);
-//   }
-//   p {
-//     @include body-style(mobile);
-//   }
-// }

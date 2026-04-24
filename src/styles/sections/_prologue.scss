@@ -1,0 +1,289 @@
+@use "../base/abstracts" as abstracts;
+@use "../base/fonts" as fonts;
+
+// ----------------------------------------------------------
+// Project page — prólogo (staged cover intro + scroll reveal)
+// ----------------------------------------------------------
+
+.project-page {
+	background: var(--color__neutrals-gallery--200);
+}
+
+.prologue {
+	position: relative;
+	width: 100%;
+	min-height: 100vh;
+	overflow: hidden;
+
+	background: #1a1a1c;
+	color: #f5f5f6;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	// Cover zooms out as user scrolls
+	&__cover-wrapper {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		transform-origin: center top;
+		transform: scale(calc(1 + (1 - var(--prologue-progress, 0)) * 0.06));
+		will-change: transform;
+	}
+
+	&__cover,
+	&__cover-placeholder {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center top;
+		display: block;
+	}
+
+	&__cover-placeholder {
+		background: radial-gradient(circle at 40% 30%, #4a3830 0%, #1a1a1c 70%);
+	}
+
+	// Bottom gradient — fades cover into dark content below
+	&__cover-gradient {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			to bottom,
+			rgba(26, 26, 28, 0) 30%,
+			rgba(26, 26, 28, 0.65) 70%,
+			rgba(26, 26, 28, 1) 100%
+		);
+		pointer-events: none;
+	}
+
+	// Fade the whole prologue out as the user scrolls past it
+	opacity: calc(1 - var(--prologue-progress, 0) * 1.5);
+
+	// Content sits above the cover
+	&__content {
+		position: relative;
+		z-index: 1;
+		@include abstracts.wrapper;
+		padding-top: clamp(100px, 20vh, 200px);
+		padding-bottom: clamp(80px, 15vh, 160px);
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	// ---- Staged reveal ----
+	// Stage 0 (default): everything hidden
+	[data-prologue-stage] {
+		opacity: 0;
+		transform: translateY(12px);
+		transition: opacity 600ms ease-out, transform 600ms ease-out;
+	}
+
+	// Stage 1+ shows stage-1 elements
+	&[data-prologue-stage="1"],
+	&[data-prologue-stage="2"],
+	&[data-prologue-stage="3"] {
+		[data-prologue-stage="1"] {
+			opacity: 1;
+			transform: none;
+		}
+	}
+
+	// Stage 2+ shows stage-2 elements
+	&[data-prologue-stage="2"],
+	&[data-prologue-stage="3"] {
+		[data-prologue-stage="2"] {
+			opacity: 1;
+			transform: none;
+			transition-delay: 80ms;
+		}
+	}
+
+	// Stage 3+ shows stage-3 elements
+	&[data-prologue-stage="3"] {
+		[data-prologue-stage="3"] {
+			opacity: 1;
+			transform: none;
+			transition-delay: 140ms;
+		}
+	}
+
+	&__year {
+		@include fonts.caption-style(desktop);
+		text-transform: none;
+		opacity: 0.6;
+		letter-spacing: 0.05em;
+	}
+
+	&__title {
+		@include fonts.h1-style(desktop);
+		font-size: clamp(48px, 7vw, 108px);
+		line-height: 0.95;
+		letter-spacing: -0.04em;
+		color: #f5f5f6;
+		max-width: 12ch;
+	}
+
+	&__tags {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin-top: 8px;
+	}
+
+	&__tag {
+		@include fonts.caption-style(desktop);
+		text-transform: capitalize;
+		padding: 8px 18px;
+		border-radius: 999px;
+		border: 1px solid rgba(245, 245, 246, 0.3);
+		color: rgba(245, 245, 246, 0.85);
+		font-size: 13px;
+		line-height: 1;
+
+		&--primary {
+			background: rgba(245, 245, 246, 0.12);
+			border-color: rgba(245, 245, 246, 0.5);
+			color: #f5f5f6;
+		}
+	}
+
+	&__description {
+		@include fonts.body-style(desktop, little);
+		text-transform: none;
+		color: rgba(245, 245, 246, 0.72);
+		max-width: 52ch;
+		margin-top: 4px;
+		line-height: 1.6;
+	}
+
+	// Scroll hint at bottom
+	&__scroll-hint {
+		position: absolute;
+		bottom: clamp(24px, 5vh, 48px);
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 10px;
+
+		span:first-child {
+			@include fonts.caption-style(desktop);
+			text-transform: none;
+			font-size: 11px;
+			letter-spacing: 0.08em;
+			color: rgba(245, 245, 246, 0.5);
+		}
+	}
+
+	&__scroll-hint-line {
+		display: block;
+		width: 1px;
+		height: 40px;
+		background: linear-gradient(to bottom, rgba(245, 245, 246, 0.4), rgba(245, 245, 246, 0));
+		animation: prologue-scroll-hint 1.8s ease-in-out infinite;
+	}
+
+	@keyframes prologue-scroll-hint {
+		0%, 100% { opacity: 0.4; transform: scaleY(0.6); transform-origin: top; }
+		50% { opacity: 1; transform: scaleY(1); }
+	}
+
+	@include abstracts.breakpoint(mobile) {
+		&__title {
+			font-size: clamp(38px, 12vw, 72px);
+		}
+	}
+}
+
+// ---- Meta bar below prologue ----
+.project-meta {
+	@include abstracts.wrapper;
+	padding-block: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 24px;
+	border-bottom: 1px solid rgba(38, 36, 38, 0.1);
+	margin-bottom: 48px;
+
+	&__tags,
+	&__date,
+	&__client {
+		@include fonts.caption-style(desktop);
+		text-transform: none;
+		color: var(--color__neutrals-midnight--300);
+	}
+}
+
+// ---- Project content area ----
+.project-content {
+	@include abstracts.wrapper;
+	padding-bottom: 80px;
+
+	h2, h3, h4 {
+		@include fonts.h3-style(desktop);
+		margin: 48px 0 16px;
+	}
+
+	p {
+		@include fonts.body-style(desktop, little);
+		text-transform: none;
+		max-width: 70ch;
+		margin-bottom: 20px;
+		line-height: 1.65;
+	}
+
+	img {
+		width: 100%;
+		height: auto;
+		border-radius: 12px;
+		margin-block: 24px;
+	}
+}
+
+// ---- Project CTA ----
+.project-contact {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 120px 24px;
+	background: #dad5d1;
+
+	&__link {
+		@include fonts.h1-style(desktop);
+		font-size: clamp(36px, 7vw, 120px);
+		letter-spacing: -0.04em;
+		text-align: center;
+		color: #262426;
+		position: relative;
+		white-space: nowrap;
+
+		&::after {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 0;
+			height: 3px;
+			background: #262426;
+			transition: width 250ms cubic-bezier(0.22, 0.61, 0.36, 1);
+		}
+
+		&:hover::after {
+			width: 100%;
+		}
+
+		@include abstracts.breakpoint(mobile) {
+			font-size: clamp(32px, 11vw, 72px);
+			white-space: normal;
+			text-align: center;
+		}
+	}
+}
