@@ -73,43 +73,60 @@ function getProjectExcerpt(introduction?: string): string {
 			</h2>
 		</section>
 
-		<section class="home-projects" id="projects" aria-labelledby="projects-title">
-			<div class="home-projects__inner">
-				<h2 class="home-projects__title" id="projects-title">Selected Projects</h2>
+		<section class="home-projects" id="projects" aria-labelledby="projects-title" data-carousel>
+			<div class="home-projects__sticky">
+				<div class="home-projects__inner">
+					<h2 class="home-projects__title" id="projects-title">Selected Projects</h2>
 
-				<div class="home-projects__content">
-					<ul class="home-projects__index" aria-label="Selected project links">
-						{
-							featuredProjects.map((project) => (
-								<li>
-									<a href={`/projects/${project.slug}`}>{project.data.project_title}</a>
-								</li>
-							))
-						}
-					</ul>
+					<div class="home-projects__content">
+						<ul class="home-projects__index" aria-label="Selected project links">
+							{
+								featuredProjects.map((project, i) => (
+									<li>
+										<button
+											type="button"
+											class={`home-projects__index-btn ${i === 0 ? "is-active" : ""}`}
+											data-carousel-sidebar={i}
+										>
+											{project.data.project_title}
+										</button>
+									</li>
+								))
+							}
+						</ul>
 
-					<div class="home-projects__cards">
-						{
-							featuredProjects.map((project) => (
-								<article class="project-card">
-									<a href={`/projects/${project.slug}`} class="project-card__link">
-										<div class="project-card__media">
-											{project.thumbnail ? (
-												<Image src={project.thumbnail} alt={project.data.project_title} class="project-card__image" loading="lazy" />
-											) : (
-												<div class="project-card__placeholder" aria-hidden="true" />
-											)}
-										</div>
+						<div class="home-projects__viewport">
+							<div class="home-projects__cards" data-carousel-track>
+								{
+									featuredProjects.map((project, i) => (
+										<article
+											class={`project-card ${i === 0 ? "is-active" : ""}`}
+											data-carousel-card={i}
+										>
+											<a href={`/projects/${project.slug}`} class="project-card__link">
+												<div class="project-card__media">
+													{project.thumbnail ? (
+														<Image src={project.thumbnail} alt={project.data.project_title} class="project-card__image" loading="lazy" />
+													) : (
+														<div class="project-card__placeholder" aria-hidden="true" />
+													)}
+													<span class="project-card__tag">{project.mainTag}</span>
+												</div>
 
-										<div class="project-card__body">
-											<p class="project-card__tag">{project.mainTag}</p>
-											<h3 class="project-card__title">{project.data.project_title}</h3>
-											<p class="project-card__excerpt">{project.excerpt}</p>
-										</div>
-									</a>
-								</article>
-							))
-						}
+												<div class="project-card__body">
+													<h3 class="project-card__title">{project.data.project_title}</h3>
+													<p class="project-card__excerpt">{project.excerpt}</p>
+												</div>
+											</a>
+										</article>
+									))
+								}
+							</div>
+						</div>
+
+						<div class="home-projects__progress" aria-hidden="true">
+							<span class="home-projects__progress-bar" data-carousel-progress></span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -181,3 +198,5 @@ function getProjectExcerpt(introduction?: string): string {
 		</section>
 	</main>
 </BaseLayout>
+
+<script src="../assets/scripts/home-carousel.js"></script>
