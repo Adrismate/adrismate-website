@@ -1,14 +1,19 @@
 ---
+import AdrismateIsotype from "../AdrismateIsotype.astro";
 ---
 
-<a href="/" class="nav__logo" aria-label="Adrismate — Home">
-	<img src="/icons/icons--adrismate.svg" alt="" width="36" height="36" />
-</a>
+<header class="nav">
+	<div class="nav__layout layout-wrapper layout-grid-12">
+		<a href="/" class="nav__logo" aria-label="Adrismate — Home">
+			<AdrismateIsotype />
+		</a>
 
-<nav class="nav__pills" aria-label="Primary">
-	<a href="#projects" class="nav__pill">Projects</a>
-	<a href="#services" class="nav__pill">Services</a>
-	<a href="#about" class="nav__pill">About</a>
-</nav>
+		<nav class="nav__pills" aria-label="Primary">
+			<a href="#projects" class="nav__pill">Projects</a>
+			<a href="#services" class="nav__pill">Services</a>
+			<a href="#about" class="nav__pill">About</a>
+		</nav>
 
-<a href="mailto:hola@adrismate.com" class="nav__cta">Contact</a>
+		<a href="mailto:hola@adrismate.com" class="nav__cta">Contact</a>
+	</div>
+</header>

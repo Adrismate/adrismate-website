@@ -1,40 +1,32 @@
 ---
-import portrait from "../../assets/images/adrismate_profile_picture.jpg";
+import portrait from "../../assets/images/adrismate-hero_section-side_view.png";
 import { Image } from "astro:assets";
 ---
 
 <section class="hero">
 	<div class="hero__gradient"></div>
 
-	<h1 class="hero__title" aria-label="Adrismate">Adrismate</h1>
+	<div class="hero__layout">
+		<h1 class="hero__title" aria-label="Adrismate">Adrismate</h1>
 
-	<Image
-		class="hero__portrait"
-		src={portrait}
-		alt="Adrián M. Bandera (Adrismate)"
-		width={1200}
-		loading="eager"
-	/>
-
-	<span class="hero__label hero__label--left">Strategy</span>
-	<span class="hero__label hero__label--right">Design</span>
-
-	<div class="hero__intro">
-		<div class="hero__scroll-indicator" aria-hidden="true">
-			<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path
-					d="M7 7L17 17M17 17H9M17 17V9"
-					stroke="currentColor"
-					stroke-width="1.5"
-					stroke-linecap="round"
-					stroke-linejoin="round"></path>
-			</svg>
+		<div class="hero__portrait-wrap">
+			<Image class="hero__portrait" src={portrait} alt="Adrián M. Bandera (Adrismate)" width={1200} loading="eager" />
 		</div>
-		<p class="hero__description">
-			Hey! Soy Adrián M. Bandera, Digital Product Designer bajo el nickname de
-			Adrismate. Diseño interacciones que reducen fricción y transforman información
-			dispersa en productos útiles, humanos y, si pueden ser bonitos, mejor.
-			Adelante, ojea mi selección de proyectos y planeemos el siguiente juntos.
-		</p>
+
+		<span class="hero__label hero__label--left">Strategy</span>
+		<span class="hero__label hero__label--right">Design</span>
+
+		<div class="hero__intro">
+			<div class="hero__scroll-indicator" aria-hidden="true">
+				<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M7 7L17 17M17 17H9M17 17V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+				</svg>
+			</div>
+			<p class="hero__description">
+				Hey! Soy Adrián M. Bandera, Digital Product Designer bajo el nickname de Adrismate. Diseño interacciones que reducen fricción y transforman
+				información dispersa en productos útiles, humanos y, si pueden ser bonitos, mejor. Adelante, ojea mi selección de proyectos y planeemos el
+				siguiente juntos.
+			</p>
+		</div>
 	</div>
 </section>
